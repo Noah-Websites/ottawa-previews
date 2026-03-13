@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="City View Barber Shop - Traditional barbershop in Ottawa's City View neighborhood serving men and boys.">
+    <title>City View Barber Shop | Ottawa Barbershop</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💈</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #2a2a2a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Color Palette */
+        :root {
+            --charcoal: #1a1a1a;
+            --charcoal-light: #2a2a2a;
+            --cream: #f5f1e8;
+            --ivory: #ece8df;
+            --accent: #b85c3c;
+            --accent-dark: #9d4f33;
+            --gold: #d4a373;
+            --text-dark: #2a2a2a;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: transparent;
+            padding: 1.5rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--cream);
+            letter-spacing: -1px;
+        }
+
+        .nav-logo.scrolled {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--cream);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(184, 92, 60, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(212, 163, 115, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--cream);
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--cream);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-dark);
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(184, 92, 60, 0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid var(--gold);
+        }
+
+        .cta-secondary:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(212, 163, 115, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .barber-icon {
+            font-size: 200px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            border-top-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .testimonials h2 {
+            color: var(--cream);
+        }
+
+        .testimonials .section-subtitle {
+            color: var(--gold);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(8px);
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--ivory);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--ivory);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background: var(--accent);
+            color: var(--cream);
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-dark);
+            transform: scale(1.02);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-block {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .info-block p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-day {
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .hours-time {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                gap: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .barber-icon {
+                font-size: 120px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-links a {
+                font-size: 0.7rem;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.3rem;
+            }
+
+            .about-text p {
+                font-size: 0.9rem;
+            }
+
+            .barber-icon {
+                font-size: 80px;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                font-size: 2.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .testimonial-text {
+                font-size: 0.9rem;
+            }
+
+            .info-block {
+                padding: 1rem;
+            }
+
+            .info-block h3 {
+                font-size: 1.1rem;
+            }
+
+            .info-block p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">💈 CITY VIEW</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Timeless Grooming</h1>
+            <p class="subtitle">Traditional Barbershop Excellence</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button cta-primary">Book Now</a>
+                <a href="#services" class="cta-button cta-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p class="section-subtitle">Our Story</p>
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h3>Serving Ottawa Since 1995</h3>
+                <p>City View Barber Shop has been a cornerstone of the Ottawa community for nearly three decades. Located in the heart of the City View neighborhood, we pride ourselves on delivering authentic, old-school barbershop service combined with modern grooming techniques.</p>
+                <p>Our experienced barbers specialize in classic cuts, precise fades, and timeless styles. We believe in taking the time to listen to each client's needs and deliver results that exceed expectations.</p>
+                <p>Whether you're looking for a fresh haircut, a professional beard trim, or the luxury of a hot towel shave, City View Barber Shop is your destination for genuine craftsmanship and friendly service.</p>
+            </div>
+            <div class="about-decoration">
+                <div class="barber-icon">✨</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <p class="section-subtitle">Professional Grooming</p>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">✂️</div>
+                <h3>Men's Haircut</h3>
+                <p>Classic and contemporary cuts tailored to your style and hair type. Precision scissor work and expert styling techniques.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">👦</div>
+                <h3>Boy's Haircut</h3>
+                <p>Friendly service for the younger gentlemen. We specialize in classic styles that parents love and kids feel confident wearing.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🧔</div>
+                <h3>Beard Trim</h3>
+                <p>Expert beard shaping and maintenance. We'll keep your facial hair looking sharp and well-groomed between visits.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🔥</div>
+                <h3>Hot Towel Shave</h3>
+                <p>The ultimate luxury grooming experience. Warm lather, precise blade work, and a relaxing finish for the distinguished gentleman.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">👴</div>
+                <h3>Senior's Cut</h3>
+                <p>Comfortable and affordable cuts designed specifically for our senior clients. We offer patient service with a listening ear.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">💇</div>
+                <h3>Fade & Lineup</h3>
+                <p>Sharp fades and precise lineups for the modern gentleman. Expert clipper work for clean, defined edges.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2>Client Reviews</h2>
+        <p class="section-subtitle">What Our Clients Say</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Been going to City View for over 10 years. The barbers know exactly what I like, and I always walk out feeling like a million bucks. Highly recommend!"</p>
+                <p class="testimonial-author">— Marcus T., Ottawa</p>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Took my 6-year-old son in for his first haircut and the staff was amazing. They made him feel comfortable, and he looks fantastic. We're regulars now."</p>
+                <p class="testimonial-author">— David K., City View</p>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"The hot towel shave is an experience you have to try. Relaxing, professional, and the best grooming service I've ever had. Worth every penny."</p>
+                <p class="testimonial-author">— James R., Nepean</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Get In Touch</h2>
+        <p class="section-subtitle">Book Your Appointment</p>
+        <div class="contact-content">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Preferred Service</label>
+                    <input type="text" id="service" name="service" placeholder="e.g., Men's Haircut">
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your grooming preferences..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Book Appointment</button>
+            </form>
+
+            <div class="contact-info">
+                <div class="info-block fade-in">
+                    <h3>📍 Location</h3>
+                    <p>1516 Merivale Rd<br>Nepean, ON K2G 3J6<br>Ottawa, Canada</p>
+                </div>
+                <div class="info-block fade-in">
+                    <h3>📞 Phone</h3>
+                    <p><a href="tel:613-680-6940" style="color: var(--accent); text-decoration: none;">613-680-6940</a></p>
+                    <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">Call us to book or ask any questions</p>
+                </div>
+                <div class="info-block fade-in">
+                    <h3>🕐 Hours</h3>
+                    <ul class="hours-list">
+                        <li>
+                            <span class="hours-day">Monday</span>
+                            <span class="hours-time">8:30 AM - 5:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Tuesday</span>
+                            <span class="hours-time">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Wednesday</span>
+                            <span class="hours-time">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Thursday</span>
+                            <span class="hours-time">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Friday</span>
+                            <span class="hours-time">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Saturday</span>
+                            <span class="hours-time">8:00 AM - 5:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="hours-day">Sunday</span>
+                            <span class="hours-time">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">💈 City View Barber Shop</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 City View Barber Shop. All rights reserved. | 1516 Merivale Rd, Nepean, ON K2G 3J6 | 613-680-6940
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.querySelector('.nav-logo');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navLogo.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+                navLogo.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            // Create mailto link
+            const subject = `Appointment Request from ${name}`;
+            const body = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AService: ${service}%0AMessage: ${message}`;
+            window.location.href = `mailto:info@cityviewbarber.ca?subject=${subject}&body=${body}`;
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
