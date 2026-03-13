@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmine Bakery — Authentic Syrian Flavours in Ottawa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --saffron: #D4A24E;
+            --terracotta: #C26B3F;
+            --deep-brown: #3C2415;
+            --cream: #FDF6EC;
+            --olive: #7A8B4A;
+            --sand: #F5E6D0;
+            --dark: #2A1F14;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(42,31,20,0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900; font-size: 1.5rem; color: var(--saffron);
+        }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav ul li a {
+            color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem;
+            font-weight: 500; transition: color 0.3s;
+        }
+        nav ul li a:hover { color: var(--saffron); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center;
+            background: linear-gradient(160deg, var(--deep-brown) 0%, #5A3A20 40%, var(--terracotta) 100%);
+            color: #fff;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 700px; }
+        .hero-ornament {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--saffron);
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            margin-left: auto; margin-right: auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--saffron);
+            color: var(--deep-brown);
+        }
+        .btn-primary:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,162,78,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+            margin-left: 1rem;
+        }
+        .btn-outline:hover {
+            border-color: var(--saffron);
+            color: var(--saffron);
+        }
+
+        /* SECTION HELPERS */
+        section { padding: 6rem 2rem; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+        }
+        .section-header p {
+            color: #888;
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .divider {
+            width: 40px; height: 3px;
+            background: var(--terracotta);
+            border-radius: 2px;
+            margin: 1rem auto;
+        }
+
+        /* ABOUT */
+        .about { background: var(--sand); }
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-visual {
+            width: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 24px;
+            background: linear-gradient(170deg, var(--terracotta), var(--saffron));
+            position: relative;
+            overflow: hidden;
+        }
+        .about-visual::after {
+            content: '🫓';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6rem;
+            opacity: 0.3;
+        }
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            color: var(--deep-brown);
+        }
+        .about-text p {
+            color: #665544;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* MENU */
+        .menu-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .menu-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.35s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--terracotta), var(--saffron));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(60,36,21,0.08);
+        }
+        .menu-card:hover::before { opacity: 1; }
+        .menu-card .emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+        .menu-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .menu-card .price {
+            color: var(--terracotta);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .menu-card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CONTACT */
+        .contact { background: var(--deep-brown); color: #fff; }
+        .contact .section-header h2 { color: #fff; }
+        .contact .section-header p { color: rgba(255,255,255,0.5); }
+        .contact-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .contact-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: rgba(212,162,78,0.15);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .contact-item h5 {
+            font-size: 0.8rem;
+            color: var(--saffron);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.25rem;
+        }
+        .contact-item p {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--saffron);
+        }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-form .btn-primary { width: 100%; text-align: center; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #1A0F08;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.85rem;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .btn-outline { margin-left: 0; margin-top: 1rem; }
+            section { padding: 4rem 1.5rem; }
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Jasmine Bakery</div>
+        <ul>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Visit</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-ornament">✦</div>
+            <h1>The Flavours of <em>Syria</em>,<br>Baked Fresh Daily</h1>
+            <p>Family recipes passed through generations — freshly baked bread, sizzling shawarma, and the warmth of home, right here in Ottawa.</p>
+            <a href="#menu" class="btn btn-primary">Explore Our Menu</a>
+            <a href="#contact" class="btn btn-outline">Find Us</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-visual fade-in"></div>
+            <div class="about-text fade-in">
+                <h3>From Homs to Ottawa, With Love</h3>
+                <p>Jasmine Bakery was born from a simple dream: to share the authentic flavours of Syria with our new home in Ottawa. Since opening our doors in 2022, we've brought the same recipes our family has perfected for generations — baked fresh every single day.</p>
+                <p>Our kitchen is the heart of everything we do. From our signature manakeesh and freshly baked pita to our slow-roasted shawarma and rich fattoush, every dish tells a story of tradition, care, and love.</p>
+                <p>We believe food has the power to connect people, bridge cultures, and turn strangers into family. Whether it's your first visit or you're already part of the Jasmine family, there's always a warm meal and a warmer welcome waiting for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="section-header fade-in">
+            <h2>What We Make</h2>
+            <div class="divider"></div>
+            <p>Traditional Syrian dishes and freshly baked goods — made from scratch every morning.</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-card fade-in">
+                <div class="emoji">🫓</div>
+                <h4>Manakeesh</h4>
+                <div class="price">From $5.99</div>
+                <p>Freshly baked flatbread topped with za'atar, cheese, or minced meat — the crown jewel of Syrian breakfast. Pulled straight from the oven.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <div class="emoji">🥙</div>
+                <h4>Chicken Shawarma</h4>
+                <div class="price">$12.99</div>
+                <p>Marinated and slow-roasted on the spit, carved to order and wrapped in our house-baked bread with garlic sauce, pickles, and fresh vegetables.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <div class="emoji">🧆</div>
+                <h4>Falafel Plate</h4>
+                <div class="price">$11.99</div>
+                <p>Crispy on the outside, herb-filled and fluffy inside. Served with hummus, tahini, pickled turnips, and warm pita bread.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <div class="emoji">🥗</div>
+                <h4>Fattoush Salad</h4>
+                <div class="price">$9.99</div>
+                <p>Crunchy toasted pita chips tossed with fresh tomatoes, cucumber, radishes, mint, and our tangy pomegranate-sumac dressing.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <div class="emoji">🍖</div>
+                <h4>Mixed Grill Plate</h4>
+                <div class="price">$18.99</div>
+                <p>A generous platter of grilled chicken, beef kofta, and lamb chops with rice, grilled vegetables, and house-made garlic sauce.</p>
+            </div>
+            <div class="menu-card fade-in">
+                <div class="emoji">🍮</div>
+                <h4>Knafeh</h4>
+                <div class="price">$6.99</div>
+                <p>Our legendary dessert — golden, crispy semolina pastry filled with sweet stretchy cheese, soaked in rose-scented syrup. Pure bliss.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-header fade-in">
+            <h2>Visit Jasmine</h2>
+            <div class="divider"></div>
+            <p>We'd love to welcome you — stop by for a meal or send us a message.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h5>Location</h5>
+                        <p>2730 Iris Street, Unit 2<br>Ottawa, ON K2C 3C9</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h5>Phone</h5>
+                        <p>(613) 695-3088</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <h5>Hours</h5>
+                        <p>Monday – Sunday: 8:00 AM – 7:00 PM<br>Open every day</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📸</div>
+                    <div>
+                        <h5>Follow Us</h5>
+                        <p>@jasminebakeryottawa on Instagram<br>Jasmine Bakery Ottawa on Facebook</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form fade-in" onsubmit="event.preventDefault();">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jasmine Bakery — Ottawa, ON. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
