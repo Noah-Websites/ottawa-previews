@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danco Electrical Services Ltd | Barrhaven Ottawa</title>
+  <meta name="description" content="Danco Electrical Services Ltd — trusted residential and commercial electrician in Barrhaven & Nepean, Ottawa. Licensed, insured, and rated 4.9 stars.">
+  <meta name="keywords" content="electrician Ottawa, Barrhaven electrician, Nepean electrician, residential electrical, commercial electrical">
+  <meta property="og:title" content="Danco Electrical Services Ltd | Ottawa">
+  <meta property="og:description" content="Danco Electrical Services Ltd — trusted residential and commercial electrician in Barrhaven & Nepean, Ottawa. Licensed, insured, and rated 4.9 stars.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://noah-websites.github.io/ottawa-previews/danco_electrical_services_ottawa.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #e8a624;
+      --color-secondary: #1a2a3a;
+      --color-accent: #2c8cff;
+      --color-bg: #f5f5f0;
+      --color-text: #2d2d2d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      background: var(--color-secondary);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .navbar .logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+    .navbar .logo span { color: var(--color-primary); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--color-primary); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--color-secondary);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--color-secondary) 0%, #0d1b2a 60%, var(--color-primary) 200%);
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 8vw, 72px);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .hero h1 span { color: var(--color-primary); }
+    .hero h2 {
+      font-size: clamp(16px, 3vw, 24px);
+      color: rgba(255,255,255,0.85);
+      font-weight: 300;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .btn-primary {
+      padding: 14px 36px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(232,166,36,0.4); }
+    .btn-outline {
+      padding: 14px 36px;
+      background: transparent;
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn-outline:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
+    .scroll-arrow {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--color-primary);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      text-decoration: none;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 100px 5%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 16px;
+      color: var(--color-secondary);
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-size: 2.2rem;
+      color: var(--color-secondary);
+      margin-bottom: 20px;
+    }
+    .about-text p {
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      color: #555;
+    }
+    .about-image {
+      background: var(--color-primary);
+      border-radius: 12px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    /* ── SERVICES ── */
+    .services-section { background: #fff; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: var(--color-bg);
+      padding: 40px 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .service-card .emoji { font-size: 2.5rem; margin-bottom: 16px; }
+    .service-card h3 {
+      font-size: 1.2rem;
+      color: var(--color-secondary);
+      margin-bottom: 12px;
+    }
+    .service-card p { font-size: 0.95rem; color: #666; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--color-secondary); }
+    .testimonials-section .section-title { color: #fff; }
+    .testimonials-section .section-subtitle { color: rgba(255,255,255,0.7); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.08);
+      padding: 36px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .stars { color: var(--color-primary); font-size: 1.2rem; margin-bottom: 16px; }
+    .testimonial-card p {
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+    .reviewer { color: var(--color-primary); font-weight: 600; }
+    .reviewer-location { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+
+    /* ── MAP ── */
+    .map-section { background: #fff; }
+    .map-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-info h2 {
+      font-size: 2rem;
+      color: var(--color-secondary);
+      margin-bottom: 16px;
+    }
+    .contact-info p { color: #555; margin-bottom: 24px; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      color: var(--color-text);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 16px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .contact-form button:hover { transform: scale(1.03); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d0d0d;
+      color: #fff;
+      padding: 60px 5%;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-col h4 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: var(--color-primary);
+    }
+    .footer-col p, .footer-col a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      line-height: 2;
+    }
+    .footer-col a:hover { color: var(--color-primary); }
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-15px); }
+      60% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--color-secondary); padding: 20px 5%; gap: 20px; }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image { height: 280px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <a href="#" class="logo">Danco <span>Electrical</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="opacity:1;transform:none;">
+    <div class="hero-content">
+      <h1>Danco <span>Electrical</span> Services</h1>
+      <h2>Trusted Residential & Commercial Electrician — Barrhaven, Nepean & Ottawa</h2>
+      <div class="hero-buttons">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Contact Us</a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-arrow">↓</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Your Neighbourhood Electrician in Barrhaven</h2>
+        <p>Danco Electrical Services Ltd has been serving families and businesses across Barrhaven, Nepean, and the greater Ottawa area for years. Founded on the simple principle that every customer deserves honest, reliable electrical work at a fair price, the Danco team has built a reputation that speaks for itself — nearly 60 five-star Google reviews and counting.</p>
+        <p>Whether you need a quick repair, a full panel upgrade, or wiring for a home renovation, Danco brings the same level of care and precision to every project. Fully licensed, insured, and committed to safety, they treat every home like their own. It is that dedication to quality and customer satisfaction that has made Danco one of Barrhaven's most trusted electrical contractors.</p>
+      </div>
+      <div class="about-image">⚡</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services-section">
+    <h2 class="section-title">Our Electrical Services</h2>
+    <p class="section-subtitle">From minor repairs to major installations — Danco Electrical handles it all with professionalism and precision.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="emoji">🔌</div>
+        <h3>Panel Upgrades</h3>
+        <p>Upgrade your electrical panel to meet modern demands. We handle 100 to 200 amp upgrades safely and to code.</p>
+      </div>
+      <div class="service-card">
+        <div class="emoji">💡</div>
+        <h3>Lighting Installation</h3>
+        <p>From pot lights to chandeliers, we install interior and exterior lighting to brighten your home and boost curb appeal.</p>
+      </div>
+      <div class="service-card">
+        <div class="emoji">🏠</div>
+        <h3>Residential Wiring</h3>
+        <p>Complete wiring solutions for new builds, renovations, and additions. We ensure your home is safe and up to code.</p>
+      </div>
+      <div class="service-card">
+        <div class="emoji">🏢</div>
+        <h3>Commercial Electrical</h3>
+        <p>Reliable electrical services for offices, retail spaces, and commercial buildings throughout the Ottawa area.</p>
+      </div>
+      <div class="service-card">
+        <div class="emoji">🔧</div>
+        <h3>Troubleshooting & Repairs</h3>
+        <p>Flickering lights? Tripping breakers? Our licensed electricians diagnose and fix electrical problems quickly.</p>
+      </div>
+      <div class="service-card">
+        <div class="emoji">🔋</div>
+        <h3>EV Charger Installation</h3>
+        <p>Get your electric vehicle charger installed at home by certified professionals. We handle all makes and models.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" class="testimonials-section">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-subtitle">Rated 4.9 stars on Google with nearly 60 five-star reviews from happy Ottawa homeowners.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Danco was courteous, professional, and completed the job on time and on budget. I would recommend them to anyone in the Ottawa area looking for reliable electrical work."</p>
+        <div class="reviewer">Mark T.</div>
+        <div class="reviewer-location">Barrhaven, Ottawa</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"They came to fix a baseboard heater and even checked all the wiring in the breaker panel while they were here. Great pricing and very courteous — will definitely call again."</p>
+        <div class="reviewer">Sarah L.</div>
+        <div class="reviewer-location">Nepean, Ottawa</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Excellent service from start to finish. The electrician was knowledgeable, tidy, and explained everything clearly. Danco is now our go-to for all electrical needs."</p>
+        <div class="reviewer">James K.</div>
+        <div class="reviewer-location">Findlay Creek, Ottawa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map" class="map-section">
+    <h2 class="section-title">Find Us In Ottawa</h2>
+    <p class="section-subtitle">Proudly serving Barrhaven, Nepean, Findlay Creek, Manotick, and all of Ottawa.</p>
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=Danco+Electrical+Services+Nepean+Ottawa+Ontario&output=embed" width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Get In Touch</h2>
+        <p>Ready to schedule your electrical project? Have a question about our services? We would love to hear from you. Reach out today for a free estimate.</p>
+        <div class="contact-detail">📞 (613) 612-0143</div>
+        <div class="contact-detail">✉️ info@dancoelectrical.ca</div>
+        <div class="contact-detail">📍 182 Deerfox Dr, Nepean, ON K2J 4W8</div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/mvzwqakk" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry from Danco Electrical Services">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Phone Number">
+        <textarea name="message" rows="5" placeholder="How can we help you?"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Danco Electrical</h4>
+        <p>Trusted residential and commercial electrician serving Barrhaven, Nepean, and all of Ottawa.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#about">About Us</a><br>
+        <a href="#services">Services</a><br>
+        <a href="#reviews">Reviews</a><br>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📞 (613) 612-0143</p>
+        <p>📍 182 Deerfox Dr, Nepean</p>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Danco Electrical Services Ltd. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section:not(.hero)').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
