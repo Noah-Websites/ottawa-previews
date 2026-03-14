@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kristina's Cleaning Solutions | Ottawa</title>
+  <meta name="description" content="Professional residential and commercial cleaning, decluttering and organizing services in Ottawa and Gatineau. Women-owned, trusted since 2020.">
+  <meta name="keywords" content="cleaning services Ottawa, house cleaning Ottawa, commercial cleaning, decluttering Ottawa, organizing services">
+  <meta property="og:title" content="Kristina's Cleaning Solutions | Ottawa">
+  <meta property="og:description" content="Professional residential and commercial cleaning, decluttering and organizing services in Ottawa and Gatineau. Women-owned, trusted since 2020.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://noah-websites.github.io/ottawa-previews/kristinas_cleaning_solutions_ottawa.html">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --primary: #1B3A5C;
+      --secondary: #EFF6FF;
+      --accent: #3B82F6;
+      --bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --white: #ffffff;
+      --dark: #111111;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 5%; transition: all 0.35s ease;
+    }
+    .navbar.scrolled {
+      background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.08); padding: 14px 5%;
+    }
+    .navbar .logo {
+      font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .navbar.scrolled .logo { color: var(--primary); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.9); text-decoration: none; font-size: 15px;
+      font-weight: 500; transition: color 0.3s;
+    }
+    .navbar.scrolled .nav-links a { color: var(--text); }
+    .nav-links a:hover { color: var(--accent); }
+    .hamburger { display: none; cursor: pointer; color: var(--white); }
+    .navbar.scrolled .hamburger { color: var(--text); }
+    .hamburger svg { width: 24px; height: 24px; }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background: var(--primary); z-index: 999; flex-direction: column;
+      justify-content: center; align-items: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none; font-size: 24px; font-weight: 600;
+    }
+    .mobile-close {
+      position: absolute; top: 24px; right: 5%; cursor: pointer; color: var(--white);
+    }
+    .mobile-close svg { width: 24px; height: 24px; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh; position: relative;
+      background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.52);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 20px; }
+    .hero-label {
+      font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); margin-bottom: 20px; font-weight: 600;
+      opacity: 0; animation: fadeUp 0.7s ease forwards;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif; font-size: 68px; color: var(--white);
+      line-height: 1.1; margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+    .hero h2 {
+      font-size: 22px; color: rgba(255,255,255,0.9); font-weight: 400;
+      margin-bottom: 40px;
+      opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+    .hero-buttons {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--white); padding: 16px 36px;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      font-size: 16px; transition: all 0.2s ease; border: 2px solid var(--accent);
+    }
+    .btn-primary:hover { transform: scale(1.03); }
+    .btn-outline {
+      border: 2px solid var(--white); color: var(--white); padding: 16px 36px;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      font-size: 16px; transition: all 0.2s ease; background: transparent;
+    }
+    .btn-outline:hover { background: var(--white); color: var(--primary); transform: scale(1.03); }
+    .scroll-arrow {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      color: var(--white); animation: bounce 2s infinite; z-index: 1;
+    }
+    .scroll-arrow svg { width: 28px; height: 28px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Sections shared */
+    section { opacity: 0; transform: translateY(28px); transition: all 0.65s ease-in-out; }
+    section.visible { opacity: 1; transform: translateY(0); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section-label {
+      font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif; font-size: 42px;
+      color: var(--primary); line-height: 1.2; margin-bottom: 24px;
+    }
+
+    /* About */
+    .about { padding: 100px 0; }
+    .about-grid {
+      display: grid; grid-template-columns: 55fr 45fr; gap: 60px; align-items: center;
+    }
+    .about p { margin-bottom: 18px; color: var(--text-light); font-size: 16px; }
+    .about-img {
+      width: 100%; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      object-fit: cover; height: 420px;
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 38px; }
+    }
+
+    /* Services */
+    .services { padding: 100px 0; background: var(--secondary); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px;
+    }
+    .service-card {
+      background: var(--white); border-radius: 16px; padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07); transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .service-card .icon { color: var(--accent); margin-bottom: 18px; }
+    .service-card .icon svg { width: 32px; height: 32px; }
+    .service-card h3 { font-size: 19px; margin-bottom: 10px; color: var(--primary); }
+    .service-card p { color: var(--text-light); font-size: 15px; }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+
+    /* Testimonials */
+    .testimonials { padding: 100px 0; background: var(--primary); color: var(--white); }
+    .testimonials .section-label { color: rgba(255,255,255,0.7); }
+    .testimonials .section-title { color: var(--white); }
+    .testimonials-grid { display: flex; gap: 24px; margin-top: 48px; flex-wrap: wrap; }
+    .testimonial-card {
+      flex: 1; min-width: 280px; background: rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 32px;
+    }
+    .stars { color: #F59E0B; display: flex; gap: 4px; margin-bottom: 16px; }
+    .stars svg { width: 18px; height: 18px; }
+    .testimonial-card blockquote {
+      font-style: italic; margin-bottom: 20px; line-height: 1.8;
+      color: rgba(255,255,255,0.9); font-size: 15px;
+    }
+    .reviewer { font-weight: 600; font-size: 15px; }
+    .reviewer-location { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; }
+
+    /* Map */
+    .map-section { padding: 80px 0; text-align: center; }
+    .map-section iframe { margin-top: 32px; }
+
+    /* Contact */
+    .contact { padding: 100px 0; }
+    .contact-grid {
+      display: grid; grid-template-columns: 60fr 40fr; gap: 60px;
+    }
+    .contact form { display: flex; flex-direction: column; gap: 18px; }
+    .contact label { font-weight: 600; font-size: 14px; margin-bottom: -12px; }
+    .contact input, .contact textarea {
+      padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 8px;
+      font-family: inherit; font-size: 15px; transition: border 0.3s;
+    }
+    .contact input:focus, .contact textarea:focus { border-color: var(--accent); outline: none; }
+    .contact .submit-btn {
+      width: 100%; background: var(--primary); color: var(--white);
+      border: none; border-radius: 8px; padding: 16px; font-size: 16px;
+      cursor: pointer; font-family: inherit; font-weight: 600; transition: opacity 0.2s;
+    }
+    .contact .submit-btn:hover { opacity: 0.9; }
+    .contact-info h3 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 16px; color: var(--primary); }
+    .contact-info > p { color: var(--text-light); margin-bottom: 28px; }
+    .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .contact-detail svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+    .contact-detail span { color: var(--text); font-size: 15px; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    .footer {
+      background: var(--dark); color: var(--white); padding: 60px 0 40px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer .brand { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent); margin-bottom: 8px; }
+    .footer .tagline { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 16px; }
+    .footer .copyright { color: rgba(255,255,255,0.4); font-size: 13px; }
+    .footer h4 { font-size: 16px; margin-bottom: 18px; font-weight: 600; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer .powered { color: rgba(255,255,255,0.5); font-size: 14px; }
+    .footer .powered-sub { color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 6px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="logo">Kristina's Cleaning Solutions</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.add('open')">
+      <i data-lucide="menu"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('open')">
+      <i data-lucide="x"></i>
+    </div>
+    <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+    <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
+    <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Reviews</a>
+    <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" style="opacity:1;transform:none;">
+    <div class="hero-content">
+      <p class="hero-label">Ottawa & Gatineau · Cleaning Services</p>
+      <h1>Kristina's Cleaning Solutions</h1>
+      <h2>Professional cleaning, decluttering and organizing services. A clean home makes space for what matters most.</h2>
+      <div class="hero-buttons">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Contact Us</a>
+      </div>
+    </div>
+    <div class="scroll-arrow"><i data-lucide="arrow-down"></i></div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <p class="section-label">About Us</p>
+          <h2 class="section-title">Trusted Cleaning Since 2020</h2>
+          <p>Kristina's Cleaning Solutions was founded in 2020 with a simple mission: to help Ottawa families reclaim their space and peace of mind. As a women-owned business, we take immense pride in delivering cleaning services that go well beyond surface-level tidying.</p>
+          <p>Over the past six years, we have earned a perfect 5-star rating by treating every home and office as if it were our own. Our team uses eco-friendly products, pays meticulous attention to detail, and always leaves your space feeling refreshed and inviting.</p>
+          <p>Whether you need a one-time deep clean, regular residential maintenance, or help decluttering and organizing your living space, Kristina's Cleaning Solutions is the trusted Ottawa choice. We serve the entire Ottawa and Gatineau area with flexible scheduling and honest, transparent pricing.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80" alt="Professional cleaning service" class="about-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container" style="text-align:center;">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our Cleaning Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon"><i data-lucide="sparkles"></i></div>
+          <h3>Residential Cleaning</h3>
+          <p>Thorough home cleaning tailored to your needs. We handle everything from kitchens and bathrooms to bedrooms and living areas.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i data-lucide="building-2"></i></div>
+          <h3>Commercial Cleaning</h3>
+          <p>Keep your Ottawa workplace spotless and professional. Regular or one-time office cleaning with flexible scheduling around your hours.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i data-lucide="refresh-cw"></i></div>
+          <h3>Deep Cleaning</h3>
+          <p>An intensive top-to-bottom clean that reaches every corner. Perfect for seasonal refreshes, move-ins, or when your space needs extra attention.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i data-lucide="layout-grid"></i></div>
+          <h3>Decluttering</h3>
+          <p>Transform cluttered spaces into calm, organized environments. We help you sort, donate, and arrange so your home feels open and stress-free.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i data-lucide="folder-open"></i></div>
+          <h3>Organizing</h3>
+          <p>Custom organizational systems designed for your lifestyle. From closets and kitchens to garages, we create order that lasts.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i data-lucide="truck"></i></div>
+          <h3>Move-In/Move-Out</h3>
+          <p>Starting fresh in a new home or leaving one behind? Our move cleaning ensures every surface is immaculate for the next chapter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="reviews">
+    <div class="container" style="text-align:center;">
+      <p class="section-label">Client Reviews</p>
+      <h2 class="section-title">What Ottawa Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>"Kristina and her team did an incredible job on our home. Every room was spotless and the attention to detail was remarkable. Highly recommend to anyone in Ottawa!"</blockquote>
+          <div class="reviewer">Sarah M.</div>
+          <div class="reviewer-location">Barrhaven, Ottawa</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>"We hired Kristina's for a deep clean before moving in, and the results exceeded our expectations. The whole team was friendly, punctual, and thorough."</blockquote>
+          <div class="reviewer">David L.</div>
+          <div class="reviewer-location">Kanata, Ottawa</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+          </div>
+          <blockquote>"The decluttering service completely transformed our basement. We finally have usable space again. Kristina is organized, efficient, and such a pleasure to work with."</blockquote>
+          <div class="reviewer">Marie-Claire T.</div>
+          <div class="reviewer-location">Gatineau</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="map-section" id="map">
+    <div class="container">
+      <p class="section-label">Our Location</p>
+      <h2 class="section-title">Find Us In Ottawa</h2>
+      <iframe src="https://maps.google.com/maps?q=Kristinas+Cleaning+Solutions+Ottawa+Ontario&output=embed" width="100%" height="420" style="border:0; border-radius:12px; display:block;" loading="lazy" allowfullscreen=""></iframe>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <h2 class="section-title">Get a Free Quote</h2>
+          <p style="color:var(--text-light);margin-bottom:24px;">Ready for a cleaner, more organized space? Fill out the form below and we will be in touch within 24 hours to discuss your cleaning needs.</p>
+          <form action="https://formspree.io/f/mvzwqakk" method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" required placeholder="Your full name">
+            <label>Email Address</label>
+            <input type="email" name="email" required placeholder="your@email.com">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" placeholder="(613) 000-0000">
+            <label>Message</label>
+            <textarea name="message" rows="5" placeholder="Tell us about your cleaning needs..."></textarea>
+            <input type="hidden" name="_subject" value="New website enquiry — Kristina's Cleaning Solutions">
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>We would love to hear from you. Reach out through any of the methods below and our team will respond promptly.</p>
+          <div class="contact-detail"><i data-lucide="phone"></i><span>(613) 697-8299</span></div>
+          <div class="contact-detail"><i data-lucide="mail"></i><span>kristinascleaningsolutions@outlook.com</span></div>
+          <div class="contact-detail"><i data-lucide="map-pin"></i><span>Serving Ottawa & Gatineau, ON</span></div>
+          <div class="contact-detail"><i data-lucide="clock"></i><span>Mon - Fri: 8:30 AM - 5:00 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">Kristina's Cleaning Solutions</div>
+          <div class="tagline">A clean home makes space for what matters most.</div>
+          <div class="copyright">&copy; 2026 Kristina's Cleaning Solutions. All Rights Reserved.</div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="powered">CapitalSites Ottawa</div>
+          <div class="powered-sub">Professional websites for Ottawa businesses</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 80);
+    });
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(s => observer.observe(s));
+  </script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
