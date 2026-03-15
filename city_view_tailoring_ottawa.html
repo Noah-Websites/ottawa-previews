@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City View Tailoring | Nepean Ottawa</title>
+    <meta name="description" content="Expert tailoring and alterations in Nepean, Ottawa. Over 40 years of custom clothing, alterations, and repairs for men, women, and children.">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #1B2A4A;
+            --secondary: #F5F0E8;
+            --accent: #C9A94E;
+            --bg: #FAFAF7;
+            --text: #2C2C2C;
+            --text-light: #666666;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--bg);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled a {
+            color: var(--text);
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        nav.scrolled .nav-toggle {
+            color: var(--primary);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 4rem;
+            right: 2rem;
+            background: var(--white);
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+        }
+
+        .nav-dropdown.active {
+            display: flex;
+        }
+
+        .nav-dropdown a {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .nav-close {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-close.active {
+            display: block;
+        }
+
+        /* HERO */
+        section#hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), url('https://source.unsplash.com/1600x900/?tailor,sewing');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0s forwards;
+        }
+
+        .hero-label strong {
+            color: var(--accent);
+        }
+
+        section#hero h1 {
+            font-size: 68px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        section#hero h2 {
+            font-size: 22px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        button, .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background: #0f1a2f;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            transform: scale(1.03);
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .hero-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ABOUT */
+        section#about {
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        section#about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        section#about p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            border-radius: 16px;
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* SERVICES */
+        section#services {
+            padding: 6rem 2rem;
+            background: var(--secondary);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section#services h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .services-intro {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIALS */
+        section#testimonials {
+            padding: 6rem 2rem;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section#testimonials h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* MAP */
+        section#map {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section#map h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 60%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* CONTACT */
+        section#contact {
+            padding: 6rem 2rem;
+            background: var(--secondary);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        section#contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-intro {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 169, 78, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-details strong {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            section#about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            section#hero h1 {
+                font-size: 38px;
+            }
+
+            section#hero h2 {
+                font-size: 18px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            section#hero {
+                padding: 1.5rem;
+            }
+
+            section#hero h1 {
+                font-size: 38px;
+            }
+
+            section#hero h2 {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button, .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            section#about,
+            section#services,
+            section#testimonials,
+            section#map,
+            section#contact {
+                padding: 3rem 1.5rem;
+            }
+
+            section#about h2,
+            section#services h2,
+            section#testimonials h2,
+            section#map h2,
+            section#contact h2 {
+                font-size: 1.8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-dropdown {
+                right: 1rem;
+                top: 3.5rem;
+            }
+        }
+
+        /* SCROLL REVEAL */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">City View Tailoring</div>
+        <ul id="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-dropdown" id="nav-dropdown">
+            <button class="nav-close" id="nav-close">
+                <i data-lucide="x"></i>
+            </button>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-label"><strong>NEPEAN OTTAWA</strong> · TAILORING & ALTERATIONS</div>
+        <h1>City View Tailoring</h1>
+        <h2>Over 40 Years of Expert Tailoring in Ottawa's Nepean Neighbourhood</h2>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Our Services</button>
+            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact Us</button>
+        </div>
+        <div class="hero-arrow">
+            <i data-lucide="arrow-down" style="width: 32px; height: 32px;"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="scroll-reveal">
+        <div>
+            <div class="section-label">About Us</div>
+            <h2>A Tradition of Craftsmanship Since the 1980s</h2>
+            <p>City View Tailoring has been serving the Nepean community for over 40 years, establishing itself as a cornerstone of expert craftsmanship and personalized service. Owner George Mahoty has dedicated his career to providing exceptional tailoring and alterations that exceed every client's expectations. With decades of experience in the industry, we've built a reputation for precision, attention to detail, and a commitment to preserving the art of traditional tailoring.</p>
+            <p>Whether you need custom suits tailored to your exact measurements, wedding attire alterations for your special day, or simple hemming and repairs, our skilled team treats every garment with the care and expertise it deserves. We work with a wide variety of fabrics including delicate silks, heavy wools, leather, and fur, ensuring that no project is too complex or unique for our accomplished craftspeople.</p>
+            <p>Our clients return to us year after year because we understand that great tailoring is about more than just adjusting seams. It's about enhancing your appearance, boosting your confidence, and ensuring your clothes fit perfectly to your body and lifestyle. In a world of mass production, City View Tailoring remains dedicated to the personal touch and quality that only a true neighborhood tailor can provide.</p>
+        </div>
+        <img src="https://source.unsplash.com/800x600/?tailor,fabric" alt="Expert tailoring craftsmanship at City View Tailoring" class="about-image">
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="scroll-reveal">
+        <div class="services-container">
+            <h2>Our Services</h2>
+            <p class="services-intro">Expert tailoring and alterations for every need</p>
+            <div class="services-grid">
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="scissors" class="service-icon"></i>
+                    <h3>Custom Suits</h3>
+                    <p>Bespoke suit tailoring designed specifically to your measurements and style preferences. We create suits that fit perfectly and make you feel confident.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="shirt" class="service-icon"></i>
+                    <h3>Dress Alterations</h3>
+                    <p>Professional alterations for dresses of all styles. From hemming to reshaping, we ensure your dresses fit flawlessly for any occasion.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="wrench" class="service-icon"></i>
+                    <h3>Zipper Replacement</h3>
+                    <p>Expert zipper repair and replacement services. We fix or replace broken zippers on all types of clothing and accessories to restore functionality.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="scissors" class="service-icon"></i>
+                    <h3>Hemming & Tapering</h3>
+                    <p>Precision hemming and tapering services for pants, skirts, and more. We ensure perfect length and fit that complements your body shape.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="package" class="service-icon"></i>
+                    <h3>Leather & Fur Work</h3>
+                    <p>Specialized services for delicate leather jackets, coats, and fur garments. Our expertise ensures these premium items are handled with utmost care.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="heart" class="service-icon"></i>
+                    <h3>Wedding Attire</h3>
+                    <p>Complete alterations for wedding day attire. Whether wedding dress, suit, or bridesmaid gowns, we ensure everything is perfect for your special day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="scroll-reveal">
+        <div class="testimonials-container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-reveal">
+                    <div class="star-rating">
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"George is an absolute master at his craft. My custom suit fits like a dream, and the attention to detail is remarkable. I wouldn't trust anyone else with my tailoring needs."</p>
+                    <p class="testimonial-author">Michael T., Nepean</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="star-rating">
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"My wedding dress alterations were handled with such care and precision. City View Tailoring made my dress fit perfectly on the most important day of my life. Highly recommended!"</p>
+                    <p class="testimonial-author">Sarah K., City View</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="star-rating">
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                        <i data-lucide="star" class="star" style="fill: #F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been taking my clothes to City View Tailoring for years. George and his team are reliable, professional, and always deliver excellent results. A true gem in Nepean."</p>
+                    <p class="testimonial-author">Robert V., Barrhaven</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section id="map" class="scroll-reveal">
+        <h2>Find Us In Ottawa</h2>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=City+View+Tailoring+Ottawa+Ontario&output=embed" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="scroll-reveal">
+        <div class="contact-container">
+            <div>
+                <h2>Get In Touch</h2>
+                <p class="contact-intro">Have questions about our services or want to schedule an appointment? We'd love to hear from you. Fill out the form below or contact us directly using the information provided.</p>
+                <form class="contact-form" onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i data-lucide="phone" class="contact-icon"></i>
+                    <div class="contact-details">
+                        <strong>Phone</strong>
+                        <p><a href="tel:613-225-1241" style="color: var(--text-light); text-decoration: none;">613-225-1241</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="mail" class="contact-icon"></i>
+                    <div class="contact-details">
+                        <strong>Email</strong>
+                        <p><a href="mailto:Georgebake@hotmail.com" style="color: var(--text-light); text-decoration: none;">Georgebake@hotmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="map-pin" class="contact-icon"></i>
+                    <div class="contact-details">
+                        <strong>Address</strong>
+                        <p>1516 Merivale Rd<br>Nepean, ON K2G 3J6<br>Canada</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="clock" class="contact-icon"></i>
+                    <div class="contact-details">
+                        <strong>Hours</strong>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>City View Tailoring</h3>
+                <p>Expert tailoring and alterations in Nepean, Ottawa. Over 40 years of quality craftsmanship and personalized service.</p>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.85rem;">© 2026 City View Tailoring. All Rights Reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Website Design</h3>
+                <p>Website by CapitalSites Ottawa</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Professional web design and development for Ottawa businesses</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lucide Icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navClose = document.getElementById('nav-close');
+        const navDropdown = document.getElementById('nav-dropdown');
+        const navLinks = navDropdown.querySelectorAll('a');
+
+        navToggle.addEventListener('click', function() {
+            navDropdown.classList.toggle('active');
+            navClose.classList.toggle('active');
+        });
+
+        navClose.addEventListener('click', function() {
+            navDropdown.classList.remove('active');
+            navClose.classList.remove('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navDropdown.classList.remove('active');
+                navClose.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
