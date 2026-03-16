@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Bong Parlour | Vanier Ottawa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #1A1A2E;
+            --secondary: #F0EDE8;
+            --accent: #4CAF50;
+            --bg: #FAFAF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        button {
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(0);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-brand i {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+            background: none;
+            padding: 0;
+        }
+
+        .hamburger i {
+            width: 28px;
+            height: 28px;
+            color: var(--primary);
+        }
+
+        .hamburger.active i[data-lucide="menu"] {
+            display: none;
+        }
+
+        .hamburger i[data-lucide="x"] {
+            display: none;
+        }
+
+        .hamburger.active i[data-lucide="x"] {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background-color: var(--white);
+                padding: 1rem 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--secondary);
+                color: var(--text);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-brand {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #2D2D44 100%);
+            background-image: url('https://source.unsplash.com/1600x900/?smoke,shop,glass');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.52);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 68px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-content h2 {
+            font-size: 22px;
+            color: var(--secondary);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            font-family: 'Outfit', sans-serif;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 0.9rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .hero-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-arrow i {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-7px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 90vh;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content h2 {
+                font-size: 18px;
+                margin-bottom: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .about {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            padding: 6rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .service-card:hover h3 {
+            color: var(--white);
+        }
+
+        .service-card:hover i {
+            color: var(--white);
+        }
+
+        .service-card i {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .service-card:hover p {
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .services {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .stars i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .testimonial-text {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonials {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* ===== MAP SECTION ===== */
+        .map-section {
+            padding: 6rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .map-section {
+                padding: 4rem 1rem;
+            }
+
+            .map-iframe {
+                height: 350px;
+            }
+
+            .map-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background-color: var(--secondary);
+            padding: 3rem;
+            border-radius: 12px;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #DDD;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent);
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.02);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .contact-item-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .contact-item-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-item-content a {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact {
+                padding: 4rem 1rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .contact-form h2 {
+                font-size: 1.5rem;
+            }
+
+            .contact-item {
+                gap: 1rem;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+        }
+
+        footer a:hover {
+            color: var(--secondary);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== UTILITIES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-brand">
+            <i data-lucide="leaf"></i>
+            Bong Parlour
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#map">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <i data-lucide="menu"></i>
+            <i data-lucide="x"></i>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">VANIER OTTAWA · PREMIUM SMOKE SHOP</div>
+            <h1>Bong Parlour</h1>
+            <h2>Ottawa's Premier Destination for Quality Glassware & Accessories</h2>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Shop Collection</button>
+                <button class="btn btn-secondary">Visit Us</button>
+            </div>
+        </div>
+        <div class="hero-arrow">
+            <i data-lucide="arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content reveal">
+                <h2>Curated Quality, Expert Advice</h2>
+                <p>
+                    Bong Parlour is the premier smoke shop in Ottawa's Vanier neighborhood, dedicated to providing the finest selection of premium glass art and smoking accessories. With over a decade of passion for quality and customer satisfaction, we've built our reputation on trust and excellence.
+                </p>
+                <p>
+                    Our carefully curated inventory features a wide selection of high-quality glassware, vaporizers, rolling papers, and accessories from trusted brands. Whether you're a seasoned collector or just starting your journey, our knowledgeable staff is here to guide you through our extensive selection and help you find exactly what you need.
+                </p>
+                <p>
+                    We're a locally owned and operated business committed to fostering a friendly, welcoming atmosphere where all customers feel valued. Visit us at 255 Montréal Rd Suite 207 to experience our exceptional service and discover why Bong Parlour is Ottawa's preferred destination for quality smoke shop products.
+                </p>
+            </div>
+            <div class="about-image reveal">
+                <img src="https://source.unsplash.com/800x600/?glass,art,handmade" alt="Curated glassware collection">
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title reveal">Our Services & Products</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <i data-lucide="sparkles"></i>
+                    <h3>Premium Glassware</h3>
+                    <p>Hand-selected glass art pieces crafted by master artisans, featuring unique designs and exceptional quality.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="zap"></i>
+                    <h3>Vaporizers & Mods</h3>
+                    <p>Latest vaporizer technology and electronic devices from leading brands for the best experience.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="leaf"></i>
+                    <h3>Rolling Accessories</h3>
+                    <p>Complete selection of premium rolling papers, filters, and accessories for every preference.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="shield-check"></i>
+                    <h3>CBD & Herbal Products</h3>
+                    <p>Quality CBD products and herbal options for those seeking natural alternatives and wellness.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="sparkles"></i>
+                    <h3>Custom Pieces</h3>
+                    <p>Work with our team to commission bespoke glassware tailored to your specific vision and style.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="shield-check"></i>
+                    <h3>Expert Guidance</h3>
+                    <p>Knowledgeable staff ready to provide personalized recommendations and product education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title reveal">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Bong Parlour has an incredible selection of high-quality pieces. The staff is knowledgeable and friendly, making my shopping experience seamless. I keep coming back for their curated inventory."</p>
+                    <p class="testimonial-author">— Marcus T., Ottawa</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Finally found a smoke shop that actually cares about quality and customer service. The selection is amazing and the prices are competitive. This is my go-to spot in Vanier."</p>
+                    <p class="testimonial-author">— Sarah M., Vanier</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Best prices and best selection in the city. The team members are super helpful and never make you feel rushed. I've recommended Bong Parlour to all my friends!"</p>
+                    <p class="testimonial-author">— James L., Ottawa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section" id="map">
+        <div class="map-container">
+            <h2 class="reveal">Visit Our Location</h2>
+            <iframe class="map-iframe reveal" src="https://maps.google.com/maps?q=Bong+Parlour+Ottawa+Ontario&output=embed"></iframe>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-form reveal">
+                <h2>Get In Touch</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item reveal">
+                    <i data-lucide="map-pin"></i>
+                    <div class="contact-item-content">
+                        <h3>Visit Us</h3>
+                        <p>255 Montréal Rd Suite 207<br>Ottawa, ON K1L 6C4<br>Canada</p>
+                    </div>
+                </div>
+                <div class="contact-item reveal">
+                    <i data-lucide="phone"></i>
+                    <div class="contact-item-content">
+                        <h3>Call Us</h3>
+                        <p><a href="tel:+16132227308">(613) 222-7308</a></p>
+                    </div>
+                </div>
+                <div class="contact-item reveal">
+                    <i data-lucide="mail"></i>
+                    <div class="contact-item-content">
+                        <h3>Email Us</h3>
+                        <p><a href="mailto:capitaldistribution@outlook.com">capitaldistribution@outlook.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item reveal">
+                    <i data-lucide="clock"></i>
+                    <div class="contact-item-content">
+                        <h3>Hours</h3>
+                        <p>Monday - Sunday<br>10:00 AM - 12:00 AM (Midnight)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Bong Parlour. Website by <strong>CapitalSites Ottawa</strong>.</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(element => {
+            revealOnScroll.observe(element);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            const mailtoLink = `mailto:capitaldistribution@outlook.com?subject=New Contact from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+
+            window.location.href = mailtoLink;
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>

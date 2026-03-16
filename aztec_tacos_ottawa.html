@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aztec Tacos | Vanier Ottawa</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B2500;
+            --secondary: #FFF5E6;
+            --accent: #D4A024;
+            --bg: #FFFDF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background-color: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav.scrolled .nav-logo {
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        nav.scrolled .nav-menu a {
+            color: var(--text);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background-color: var(--text);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
+                        url('https://source.unsplash.com/1600x900/?mexican,tacos,food') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            letter-spacing: -1px;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(139, 37, 0, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            transform: scale(1.03);
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 40px;
+            opacity: 0;
+            animation: bounce 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            40% {
+                transform: translateY(15px);
+                opacity: 1;
+            }
+            60% {
+                transform: translateY(10px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 120px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: url('https://source.unsplash.com/800x600/?taqueria,mexican,cuisine') center/cover;
+            border-radius: 12px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 120px 40px;
+            background-color: var(--secondary);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 80px;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            color: var(--primary);
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 120px 40px;
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials .section-title {
+            color: var(--white);
+            margin-bottom: 80px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .stars {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .star {
+            color: var(--accent);
+            width: 20px;
+            height: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        /* MAP */
+        .map-section {
+            padding: 120px 40px;
+        }
+
+        .map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .map-container h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* CONTACT */
+        .contact {
+            padding: 120px 40px;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact h2 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .contact-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-item h3 {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form .btn {
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px;
+            font-size: 14px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 100px 20px 60px;
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+                margin-bottom: 15px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+                margin-bottom: 40px;
+            }
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--primary);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 80px 20px;
+                gap: 40px;
+            }
+
+            .about-content h2 {
+                font-size: 36px;
+            }
+
+            .about-image {
+                height: 300px;
+                order: -1;
+            }
+
+            .services {
+                padding: 80px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 60px;
+            }
+
+            .testimonials {
+                padding: 80px 20px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-section {
+                padding: 80px 20px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 80px 20px;
+                gap: 40px;
+            }
+
+            .contact {
+                padding: 80px 20px;
+            }
+
+            .contact h2 {
+                font-size: 36px;
+            }
+
+            iframe {
+                height: 350px;
+            }
+
+            .arrow-down {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+
+            .about-content h2 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+
+            .services-grid {
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .contact-container {
+                gap: 30px;
+            }
+
+            .contact h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                padding: 0 15px;
+            }
+
+            .nav-logo {
+                font-size: 20px;
+            }
+
+            .nav-menu {
+                top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-logo">Aztec Tacos</a>
+        <ul class="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-label">VANIER OTTAWA · AUTHENTIC MEXICAN TAQUERIA</div>
+        <h1>Aztec Tacos</h1>
+        <h2>Traditional Mexican Tacos Made Fresh Daily in Vanier</h2>
+        <div class="hero-buttons">
+            <a href="#services" class="btn btn-primary">Our Menu</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+        <div class="arrow-down">
+            <i data-lucide="arrow-down" style="width: 32px; height: 32px;"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about scroll-reveal" id="about">
+        <div class="about-content scroll-reveal">
+            <h2>Authentic Flavours, Humble Roots</h2>
+            <p>At Aztec Tacos, we believe in the power of tradition. Our taqueria is a small, intimate space with just 30 seats, designed to feel like home. Every dish is made with care and authenticity, honoring time-tested recipes passed down through generations in Mexico.</p>
+            <p>We specialize in 12 varieties of fresh tacos, each priced at just $5 each, made with hand-pressed corn tortillas prepared daily. Our commitment to quality means every ingredient is selected for its flavor and freshness, ensuring that every bite tastes like it was made in someone's family kitchen.</p>
+            <p>Every Saturday, we feature a rotating specialty menu with hearty platters and birria by the litre, giving you the chance to explore authentic Mexican cuisine beyond our daily offerings. Whether you're looking for a quick lunch or a taste of home, Aztec Tacos is your destination for real Mexican street food.</p>
+        </div>
+        <div class="about-image scroll-reveal"></div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title scroll-reveal">What We Offer</h2>
+            <div class="services-grid">
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <h3>Signature Tacos</h3>
+                    <p>Choose from 12 authentic varieties, all made fresh daily with hand-pressed corn tortillas and traditional Mexican recipes. Just $5 per taco.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="menu"></i>
+                    </div>
+                    <h3>Tamales & Tacos Dorados</h3>
+                    <p>Authentic tamales and crispy fried tacos prepared the traditional way, bringing you flavors straight from Mexico.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <h3>Saturday Specials</h3>
+                    <p>Every Saturday, enjoy our rotating specialty menu featuring hearty platters and unique dishes you won't find during the week.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <h3>Birria by the Litre</h3>
+                    <p>Rich, slow-cooked birria available by the litre for special occasions and gatherings. Perfect for sharing with family and friends.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="menu"></i>
+                    </div>
+                    <h3>Catering & Party Platters</h3>
+                    <p>Need to feed a crowd? We offer catering services and party platters for any occasion. Contact us for custom orders.</p>
+                </div>
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <h3>Dine-In & Takeout</h3>
+                    <p>Enjoy your meal in our cozy 30-seat dining space or take it to go. We offer both convenient options for your lifestyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials scroll-reveal" id="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">"These are the best tacos I've had outside of Mexico. The flavors are incredible and the prices are unbeatable. I come here at least once a week!"</p>
+                    <p class="testimonial-author">Maria S., Ottawa</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">"Authentic Mexican food that tastes like home. The owner really cares about quality and it shows in every bite. Highly recommended!"</p>
+                    <p class="testimonial-author">Carlos M., Vanier</p>
+                </div>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                        <i data-lucide="star" class="star" style="fill: currentColor;"></i>
+                    </div>
+                    <p class="testimonial-text">"For $5 per taco, you can't beat the quality and portion size. Fresh ingredients, friendly service, and a great vibe. This is my new favorite spot!"</p>
+                    <p class="testimonial-author">Jessica L., Ottawa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section scroll-reveal" id="map">
+        <div class="map-container">
+            <h2 class="scroll-reveal">Visit Us</h2>
+            <iframe src="https://maps.google.com/maps?q=Aztec+Tacos+Ottawa+Ontario&output=embed"></iframe>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact scroll-reveal" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="scroll-reveal">Get In Touch</h2>
+
+                <div class="contact-item scroll-reveal">
+                    <div class="contact-icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <div>
+                        <h3>Address</h3>
+                        <p>77 Montréal Rd<br>Vanier, Ottawa, ON K1L 6E8</p>
+                    </div>
+                </div>
+
+                <div class="contact-item scroll-reveal">
+                    <div class="contact-icon">
+                        <i data-lucide="phone"></i>
+                    </div>
+                    <div>
+                        <h3>Phone</h3>
+                        <p><a href="tel:+16137419998">(613) 741-9998</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item scroll-reveal">
+                    <div class="contact-icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:aztectacos@outlook.com">aztectacos@outlook.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item scroll-reveal">
+                    <div class="contact-icon">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <div>
+                        <h3>Hours</h3>
+                        <p>Tuesday - Sunday: 11:00 AM - 9:00 PM<br>Closed Mondays</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form scroll-reveal" action="#" method="POST">
+                <h2>Send us a Message</h2>
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Aztec Tacos. Website by CapitalSites Ottawa.</p>
+    </footer>
+
+    <!-- LUCIDE ICONS -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
