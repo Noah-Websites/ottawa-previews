@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montreal Road Medical Centre | Vanier Ottawa</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Montreal Road Medical Centre - Comprehensive family healthcare in Vanier, Ottawa. Walk-in clinic, family medicine, pediatric care, travel medicine, and more.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2C4A6E;
+            --secondary: #F0F4F8;
+            --accent: #2B8A7E;
+            --bg: #FAFCFF;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav.scrolled .nav-logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger i {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+            margin: 4px 0;
+        }
+
+        nav.scrolled .hamburger i {
+            color: var(--text);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: var(--white);
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(44, 74, 110, 0.6), rgba(44, 74, 110, 0.6)), url('https://source.unsplash.com/1600x900/?medical,clinic,healthcare') center/cover;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 74, 110, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            animation: fadeInDown 0.8s ease 0.2s both;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease 0.4s both;
+        }
+
+        .hero h1 {
+            font-size: 4.25rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease 0.6s both;
+        }
+
+        .hero h2 {
+            font-size: 1.375rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInDown 0.8s ease 0.8s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInDown 0.8s ease 1s both;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #247168;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .arrow-down i {
+            width: 32px;
+            height: 32px;
+            color: var(--white);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+            fill: currentColor;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 5rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .contact-item-content h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-content p {
+            color: var(--text-light);
+        }
+
+        .hours {
+            background-color: var(--secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .hours h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .hours p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.875rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(43, 138, 126, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group button {
+            padding: 0.875rem;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #247168;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 50px;
+                height: auto;
+                padding: 3rem 1rem;
+                min-height: 100vh;
+            }
+
+            .hero-content {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.375rem;
+            }
+
+            .hero h2 {
+                font-size: 1.125rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                font-size: 1.875rem;
+            }
+
+            .services h2,
+            .testimonials h2,
+            .map-section h2,
+            .contact h2 {
+                font-size: 1.875rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                order: -1;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about,
+            .services,
+            .testimonials,
+            .map-section,
+            .contact {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .about-text h2,
+            .services h2,
+            .testimonials h2,
+            .map-section h2,
+            .contact h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="nav-logo">Montreal Road Medical Centre</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <i data-lucide="menu"></i>
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">VANIER OTTAWA • FAMILY MEDICAL CENTRE</div>
+            <h1>Montreal Road Medical Centre</h1>
+            <h2>Comprehensive Family Healthcare in the Heart of Vanier</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#contact" class="btn btn-secondary">Book a Visit</a>
+            </div>
+        </div>
+        <div class="arrow-down">
+            <i data-lucide="arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text reveal">
+                <h2>Your Health, Our Priority</h2>
+                <p>Montreal Road Medical Centre has been serving Ottawa families for over 15 years with compassionate, comprehensive healthcare. Our walk-in clinic welcomes all ages and provides quick access to quality medical care without the need for an appointment.</p>
+                <p>We specialize in family medicine, pediatric care, travel medicine, and minor surgical procedures. Our dedicated team of healthcare professionals is committed to providing thorough, personalized care to every patient in a welcoming environment.</p>
+                <p>Located on the vibrant Montreal Road in Vanier, we're conveniently accessible and currently accepting new patients. We offer mental health counselling services and are here to support your entire family's health and wellness journey.</p>
+            </div>
+            <div class="about-image reveal">
+                <img src="https://source.unsplash.com/800x600/?doctor,medical,office" alt="Montreal Road Medical Centre">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <i data-lucide="stethoscope"></i>
+                    <h3>Family Medicine</h3>
+                    <p>Comprehensive primary care for patients of all ages, from preventive medicine to chronic disease management.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="activity"></i>
+                    <h3>Walk-In Clinic</h3>
+                    <p>No appointment needed. We welcome walk-ins and offer quick access to healthcare when you need it most.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="users"></i>
+                    <h3>Pediatric Care</h3>
+                    <p>Specialized healthcare for children and adolescents, including vaccinations, growth monitoring, and developmental assessments.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="shield-check"></i>
+                    <h3>Travel Medicine</h3>
+                    <p>Pre-travel consultations, vaccinations, and health advice to ensure safe and healthy journeys around the world.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="heart"></i>
+                    <h3>Minor Surgeries</h3>
+                    <p>Professional in-office procedures for minor surgical needs with expert care and attention to detail.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="activity"></i>
+                    <h3>Counselling Services</h3>
+                    <p>Mental health support and counselling to help you navigate life's challenges and improve your overall wellness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>What Our Patients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"The doctors here are incredibly caring and thorough. They take time to listen and explain everything. This is the best medical experience we've had as a family."</p>
+                    <p class="testimonial-author">Sarah Johnson</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Walk-in clinic services have been a lifesaver for us. No long waits, professional staff, and they're open when we need them. Highly recommend!"</p>
+                    <p class="testimonial-author">Michael Chen</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Excellent care for our children. The pediatric team is knowledgeable, patient, and makes our kids feel comfortable. We trust them completely."</p>
+                    <p class="testimonial-author">Emma Rodriguez</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Find Us</h2>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=Montreal+Road+Medical+Centre+Ottawa+Ontario&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form reveal">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.3rem;">Send Us a Message</h3>
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="contact-info reveal">
+                    <h3 style="color: var(--primary); margin-bottom: 2rem; font-size: 1.3rem;">Contact Information</h3>
+
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <div class="contact-item-content">
+                            <h3>Address</h3>
+                            <p>398 Montréal Rd<br>Ottawa, ON K1K 0V4</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <div class="contact-item-content">
+                            <h3>Phone</h3>
+                            <p><a href="tel:(613)244-2005" style="color: var(--accent); text-decoration: none;">(613) 244-2005</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div class="contact-item-content">
+                            <h3>Email</h3>
+                            <p><a href="mailto:montrealroadclinic@hotmail.com" style="color: var(--accent); text-decoration: none;">montrealroadclinic@hotmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="hours">
+                        <h3>Hours of Operation</h3>
+                        <p><strong>Monday - Friday:</strong> 9:00 AM - 4:00 PM</p>
+                        <p><strong>Saturday - Sunday:</strong> Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Montreal Road Medical Centre. All rights reserved. Website by CapitalSites Ottawa.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            alert('Thank you for your message, ' + name + '! We will get back to you soon at ' + email + '.');
+            form.reset();
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

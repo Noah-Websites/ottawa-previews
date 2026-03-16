@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habesha Restaurant | Vanier Ottawa</title>
+    <meta name="description" content="Habesha Restaurant serves authentic Ethiopian cuisine in Vanier, Ottawa. Enjoy traditional platters, injera, and Ethiopian coffee in a warm setting.">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6B1E2E;
+            --secondary: #F5F0EB;
+            --accent: #C9A74E;
+            --bg: #FFFDF9;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav.scrolled .logo {
+            color: var(--primary);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        nav .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger i {
+            color: var(--white);
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+
+        nav.scrolled .hamburger i {
+            color: var(--text);
+        }
+
+        .close-menu {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .close-menu i {
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            stroke-width: 2;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            background-image: url('https://source.unsplash.com/1600x900/?ethiopian,food,restaurant');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.52);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 68px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.2s forwards;
+            line-height: 1.1;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.4s forwards;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 0.85rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(107, 30, 46, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-outline:hover {
+            transform: scale(1.03);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        .arrow-down i {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 3rem;
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 3.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(107, 30, 46, 0.15);
+            display: block;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(107, 30, 46, 0.15);
+        }
+
+        .service-card i {
+            width: 48px;
+            height: 48px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            stroke-width: 1.5;
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .testimonials h2 {
+            color: var(--white);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars i {
+            width: 18px;
+            height: 18px;
+            color: #F59E0B;
+            fill: #F59E0B;
+        }
+
+        .testimonial-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Map Section */
+        .map {
+            background-color: var(--bg);
+        }
+
+        .map h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 420px;
+            border: none;
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 3.75rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 167, 78, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 0.85rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(107, 30, 46, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+            margin-top: 0.25rem;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        .contact-item-content h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text);
+        }
+
+        .contact-item-content p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #999;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            nav .logo {
+                font-size: 1.4rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 2rem 1.5rem;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--white);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .close-menu {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+            }
+
+            .close-menu.active {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 390px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero h2 {
+                font-size: 0.95rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-label {
+                font-size: 0.75rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .footer-container {
+                gap: 1.5rem;
+            }
+
+            .footer-col h3 {
+                font-size: 1rem;
+            }
+
+            .footer-col p,
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a href="#" class="logo">Habesha Restaurant</a>
+        <button class="hamburger" id="hamburger">
+            <i data-lucide="menu"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <button class="close-menu" id="closeMenu">
+                <i data-lucide="x"></i>
+            </button>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-label">Vanier Ottawa · Ethiopian Restaurant</p>
+            <h1>Habesha Restaurant</h1>
+            <h2>Authentic Ethiopian Cuisine in the Heart of Vanier</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+        <div class="arrow-down">
+            <i data-lucide="arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <p class="section-label">About Us</p>
+                <h2>A Taste of Ethiopia in Ottawa</h2>
+                <p>Welcome to Habesha Restaurant, where we bring the vibrant flavors and rich traditions of Ethiopian cuisine to the heart of Vanier. Since opening our doors, we have been dedicated to serving our community with authentic dishes prepared using time-honored recipes passed down through generations. Our passion is to share the warmth and hospitality of Ethiopian culture with every guest who walks through our doors.</p>
+                <p>Our signature experience centers around injera, the spongy, fermented flatbread that serves as both plate and utensil in traditional Ethiopian dining. Each injera is crafted fresh daily using traditional methods, providing the perfect foundation for our carefully curated selection of stews, proteins, and vegetables. We source the finest ingredients to ensure that every bite transports you to the highlands of Ethiopia.</p>
+                <p>Beyond our delicious platters, Habesha Restaurant is proud to present our traditional Ethiopian coffee ceremony. This sacred ritual, steeped in centuries of tradition, is more than just serving coffee; it is a celebration of community, friendship, and connection. Join us to experience this unique cultural tradition alongside our exceptional cuisine and warm, welcoming hospitality.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://source.unsplash.com/800x600/?ethiopian,cuisine,injera" alt="Ethiopian cuisine at Habesha Restaurant">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 style="text-align: center; color: var(--primary);">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Traditional Ethiopian Platters</h3>
+                <p>Experience our signature platters featuring a harmonious blend of spiced meats, vegetables, and legumes served on freshly made injera.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Vegetarian & Vegan Options</h3>
+                <p>Our diverse selection of plant-based dishes celebrates Ethiopian culinary traditions with hearty lentils, split peas, and seasonal vegetables.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Catering Services</h3>
+                <p>Bring the authentic taste of Ethiopia to your next event. We offer full catering services with customizable menus for any occasion.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Private Dining</h3>
+                <p>Host an intimate gathering in our restaurant with reserved seating and personalized service tailored to your preferences.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Takeout & Delivery</h3>
+                <p>Enjoy your favorite Ethiopian dishes from the comfort of your home. We offer convenient takeout and delivery options throughout Vanier.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="utensils"></i>
+                <h3>Ethiopian Coffee Ceremony</h3>
+                <p>Participate in our traditional coffee ceremony, a sacred ritual celebrating community and connection through freshly roasted and ground coffee.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2 style="text-align: center;">What Our Guests Say</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                </div>
+                <p>"Habesha Restaurant offers the most authentic Ethiopian dining experience I have found in Ottawa. Every dish is bursting with flavor and prepared with such care. The injera is absolutely divine, and the warm hospitality makes you feel like family."</p>
+                <div class="testimonial-author">Marcus T. - The Glebe, Ottawa</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                </div>
+                <p>"The Ethiopian coffee ceremony at Habesha was a cultural highlight for me. It's more than just coffee; it's a meaningful ritual that connects you to a beautiful tradition. Their catering service was perfect for our celebration."</p>
+                <div class="testimonial-author">Sarah J. - Vanier, Ottawa</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                    <i data-lucide="star"></i>
+                </div>
+                <p>"As someone who grew up eating Ethiopian food, I can confidently say that Habesha captures the authentic flavors perfectly. The variety of vegetarian options is impressive, and the spice levels are balanced beautifully."</p>
+                <div class="testimonial-author">David K. - Sandy Hill, Ottawa</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map" id="map">
+        <h2>Find Us In Ottawa</h2>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Habesha+Restaurant+Ottawa+Ontario&output=embed" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Get In Touch</h2>
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <div class="contact-item-content">
+                        <h3>Phone</h3>
+                        <p>(613) 761-6120</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <div class="contact-item-content">
+                        <h3>Email</h3>
+                        <p>otthabesharestaurant@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="map-pin"></i>
+                    <div class="contact-item-content">
+                        <h3>Address</h3>
+                        <p>99 Montréal Rd, Vanier, Ottawa, ON K1L 6E8</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="clock"></i>
+                    <div class="contact-item-content">
+                        <h3>Hours</h3>
+                        <p>Monday - Sunday: 11:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Habesha Restaurant</h3>
+                <p>Bringing authentic Ethiopian cuisine and traditions to the heart of Vanier, Ottawa.</p>
+                <p style="margin-top: 1rem;">© 2026 Habesha Restaurant. All Rights Reserved.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Website</h3>
+                <p>Website by CapitalSites Ottawa</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Designed and developed with care for the Vanier community.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const closeMenu = document.getElementById('closeMenu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.add('active');
+            closeMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            closeMenu.classList.remove('active');
+        });
+
+        // Close menu when link clicked
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                closeMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal with Intersection Observer
+        const revealSections = document.querySelectorAll('section');
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        revealSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

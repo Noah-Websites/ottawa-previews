@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dupont Gold - Ottawa's trusted pawn shop & gold buyer in Vanier. Fair prices, honest service. Buy, sell, and pawn gold, jewelry, electronics, and tools.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dupont Gold | Vanier Ottawa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black:wght@400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #1C1C1C;
+            --secondary: #F5F2ED;
+            --accent: #C9A74E;
+            --bg: #FFFDF9;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Archivo Black', sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Archivo Black', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            position: relative;
+        }
+
+        .navbar-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav a:hover::after {
+            width: 100%;
+        }
+
+        .navbar.scrolled .navbar-brand {
+            color: var(--accent);
+        }
+
+        .navbar.scrolled .navbar-nav a {
+            color: var(--text);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .hamburger [data-lucide] {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+            color: var(--text);
+        }
+
+        .navbar.scrolled .hamburger [data-lucide] {
+            color: var(--text);
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            background-image: url('https://source.unsplash.com/1600x900/?gold,jewelry,pawn');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(28, 28, 28, 0.65);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            animation: fadeInDown 0.8s ease-out both;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 8vw, 68px);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            color: var(--white);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero h2 {
+            font-size: 1.375rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 0.875rem 2.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #B89840;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .hero-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+
+        .hero-arrow [data-lucide] {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            stroke-width: 1.5;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 6rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 35px rgba(201, 167, 78, 0.2);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background-color: var(--accent);
+        }
+
+        .service-icon [data-lucide] {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-icon [data-lucide] {
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 6rem 2rem;
+            background-color: var(--bg);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-stars [data-lucide] {
+            width: 18px;
+            height: 18px;
+            color: var(--accent);
+            fill: var(--accent);
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        /* MAP */
+        .map-section {
+            padding: 4rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .map-iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* CONTACT */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: var(--bg);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.875rem;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 167, 78, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button {
+            padding: 0.875rem 2.5rem;
+            background-color: var(--accent);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #B89840;
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon [data-lucide] {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .info-text h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .info-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .hours-list li {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar.menu-open {
+                position: fixed;
+                height: 100vh;
+                z-index: 1001;
+            }
+
+            .mobile-menu {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--white);
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem 1.5rem;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .mobile-menu a {
+                font-size: 1.1rem;
+                font-weight: 500;
+                color: var(--text);
+            }
+
+            .mobile-menu .btn {
+                margin-top: 1rem;
+            }
+
+            .hero {
+                height: 80vh;
+                margin-top: 60px;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .about {
+                padding: 3rem 1.5rem;
+            }
+
+            .about h2 {
+                font-size: 1.75rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services {
+                padding: 3rem 1.5rem;
+            }
+
+            .services h2 {
+                font-size: 1.75rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonials {
+                padding: 3rem 1.5rem;
+            }
+
+            .testimonials h2 {
+                font-size: 1.75rem;
+            }
+
+            .contact {
+                padding: 3rem 1.5rem;
+            }
+
+            .contact h2 {
+                font-size: 1.75rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .map-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .map-container h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                padding: 0 1rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .about-text p {
+                font-size: 0.95rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-brand">
+            <i data-lucide="gem"></i> Dupont Gold
+        </div>
+        <ul class="navbar-nav" id="navbarNav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <i data-lucide="menu"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#services" onclick="closeMobileMenu()">Services</a>
+        <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); closeMobileMenu();">Get a Quote</button>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-label">Vanier Ottawa - Pawn Shop & Gold Buyer</p>
+            <h1>Dupont Gold</h1>
+            <h2>Ottawa's Trusted Pawn Shop & Gold Buyer Since Day One</h2>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Our Services</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get a Quote</button>
+            </div>
+        </div>
+        <div class="hero-arrow">
+            <i data-lucide="arrow-down"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-header">
+            <h2>Fair Prices, Honest Service</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Welcome to Dupont Gold, Vanier's most trusted pawn shop and gold buyer. For years, we've been serving the Ottawa community with integrity and competitive pricing.</p>
+                <p>We buy and sell premium gold, silver, and fine jewelry with expert appraisals. Whether you need a pawn loan, want to sell your valuables, or are looking for quality pieces, our professional team treats every customer with respect and transparency.</p>
+                <p>Beyond precious metals, we also deal in electronics, tools, and collectibles. BBB-listed and community-approved, Dupont Gold is your go-to destination for fair deals and honest service in Ottawa.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://source.unsplash.com/800x600/?gold,coins,valuables" alt="Gold and valuables">
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="gem"></i>
+                    </div>
+                    <h3>Gold & Silver Buying</h3>
+                    <p>Expert evaluation and fair prices for all your precious metals. Instant payment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="banknote"></i>
+                    </div>
+                    <h3>Pawn Loans</h3>
+                    <p>Fast cash loans against your valuables. Secure, confidential, and flexible terms.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="scale"></i>
+                    </div>
+                    <h3>Jewelry Sales</h3>
+                    <p>Premium selection of new and pre-owned jewelry. Certified authentic pieces.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="gem"></i>
+                    </div>
+                    <h3>Electronics Buy & Sell</h3>
+                    <p>We buy and sell quality electronics. Fair pricing, quick transactions guaranteed.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3>Tool Trading</h3>
+                    <p>Buy, sell, or trade tools and equipment. Professional-grade and consumer items.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i data-lucide="star"></i>
+                    </div>
+                    <h3>Free Appraisals</h3>
+                    <p>No obligation evaluations. Expert assessment of gold, jewelry, and valuables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Dupont Gold gave me the fairest price for my jewelry. No pressure, very professional. Highly recommend!"</p>
+                    <p class="testimonial-author">- Sarah M., Ottawa</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Quick, honest, and trustworthy. Got a pawn loan when I needed it most. The team was respectful and helpful."</p>
+                    <p class="testimonial-author">- James T., Vanier</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"Best pawn shop in Ottawa. Fair prices, no hassle. Been a customer for years and never disappointed."</p>
+                    <p class="testimonial-author">- Maria G., Ottawa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2>Visit Us</h2>
+            <div class="map-iframe-container">
+                <iframe src="https://maps.google.com/maps?q=Dupont+Gold+Ottawa+Ontario&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Address</h3>
+                            <p>281 Montréal Rd<br>Vanier, Ottawa, ON K1L 6C2<br>Canada</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+16132162663">(613) 216-2663</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Email</h3>
+                            <p><a href="mailto:obelleus@hotmail.com">obelleus@hotmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i data-lucide="clock"></i>
+                        </div>
+                        <div class="info-text">
+                            <h3>Hours</h3>
+                            <ul class="hours-list">
+                                <li><span>Monday - Saturday:</span><span>10:00 AM - 5:00 PM</span></li>
+                                <li><span>Sunday:</span><span>Closed</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Dupont Gold. All rights reserved.</p>
+        <p>Website by CapitalSites Ottawa</p>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.style.display = 'none';
+        }
+
+        // Intersection Observer for scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        // Observe about section
+        const aboutText = document.querySelector('.about-text');
+        const aboutImage = document.querySelector('.about-image');
+        if (aboutText) observer.observe(aboutText);
+        if (aboutImage) observer.observe(aboutImage);
+
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            alert('Thank you for your message! Dupont Gold will contact you soon at ' + phone + '.');
+
+            document.querySelector('.contact-form').reset();
+        }
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
