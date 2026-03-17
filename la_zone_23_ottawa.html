@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Zone 23 | Sandy Hill Ottawa</title>
+    <meta name="description" content="La Zone 23 is a 5-star restaurant on Mann Avenue in Sandy Hill, Ottawa. Delicious food in a welcoming neighbourhood setting.">
+    <meta name="keywords" content="restaurant Ottawa, Sandy Hill restaurant, Mann Avenue, La Zone 23, dining Ottawa">
+    <meta property="og:title" content="La Zone 23 | Ottawa">
+    <meta property="og:description" content="Five-star restaurant in Sandy Hill, Ottawa. Fresh food, warm atmosphere, and unforgettable flavours.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #6B1E2E;
+            --secondary: #FDF8F5;
+            --accent: #D4960A;
+            --bg: #FFFFFF;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Outfit', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; }
+        .navbar.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.1); padding: 14px 40px; }
+        .navbar-brand { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: var(--white); text-decoration: none; }
+        .navbar.scrolled .navbar-brand { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 32px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s ease; }
+        .navbar.scrolled .nav-links a { color: var(--text); }
+        .nav-links a:hover { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; }
+        .navbar.scrolled .mobile-toggle { color: var(--text); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--white); z-index: 1001; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 22px; color: var(--text); text-decoration: none; font-weight: 600; }
+        .mobile-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--text); }
+
+        .hero { height: 100vh; background-image: url('https://source.unsplash.com/1600x900/?restaurant,food,dining'); background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.52); }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 20px; }
+        .hero-label { text-transform: uppercase; font-size: 14px; letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
+        .hero h1 { font-family: 'Fraunces', serif; font-size: 68px; font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 16px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.2s forwards; }
+        .hero h2 { font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 36px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.4s forwards; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.6s forwards; }
+        .btn-primary { background: var(--primary); color: var(--white); padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-primary:hover { transform: scale(1.03); }
+        .btn-outline { background: transparent; color: var(--white); padding: 14px 32px; border: 2px solid var(--white); border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-outline:hover { transform: scale(1.03); }
+        .scroll-arrow { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1; color: var(--white); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(12px); } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        section { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-label { text-transform: uppercase; font-size: 13px; letter-spacing: 3px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+        .section-title { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 700; color: var(--text); margin-bottom: 24px; }
+
+        .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 55% 45%; gap: 60px; align-items: center; }
+        .about-text p { color: var(--text-light); margin-bottom: 16px; font-size: 16px; }
+        .about-image img { width: 100%; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+
+        .services { background: var(--secondary); padding: 100px 40px; }
+        .services-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+        .service-card { background: var(--white); border-radius: 16px; padding: 36px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .service-card .icon { color: var(--accent); margin-bottom: 16px; }
+        .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .service-card p { color: var(--text-light); font-size: 15px; }
+
+        .testimonials { background: var(--primary); padding: 100px 40px; }
+        .testimonials-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .testimonials .section-label { color: var(--accent); }
+        .testimonials .section-title { color: var(--white); }
+        .testimonials-grid { display: flex; gap: 24px; margin-top: 50px; flex-wrap: wrap; justify-content: center; }
+        .testimonial-card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 36px 28px; flex: 1; min-width: 280px; max-width: 380px; }
+        .stars { margin-bottom: 16px; }
+        .stars i { color: #F59E0B; width: 20px; height: 20px; }
+        .testimonial-card p { color: var(--white); font-style: italic; font-size: 16px; margin-bottom: 20px; line-height: 1.7; }
+        .reviewer { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+        .map-section { padding: 100px 40px; text-align: center; }
+        .map-section .map-container { max-width: 1200px; margin: 40px auto 0; }
+        .map-section iframe { width: 100%; height: 420px; border: none; border-radius: 12px; }
+
+        .contact { padding: 100px 40px; background: var(--secondary); }
+        .contact-inner { max-width: 1200px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 60% 40%; gap: 60px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 15px; margin-bottom: 16px; transition: border-color 0.2s ease; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary); }
+        .contact-form button { background: var(--primary); color: var(--white); padding: 14px 36px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s ease; }
+        .contact-form button:hover { transform: scale(1.03); }
+        .contact-info-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
+        .contact-info-item i { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+        .contact-info-item strong { display: block; margin-bottom: 4px; }
+        .contact-info-item span { color: var(--text-light); font-size: 15px; }
+
+        .footer { background: #111111; padding: 60px 40px 30px; color: var(--white); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-brand { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .footer p { color: #999; font-size: 14px; line-height: 1.6; }
+        .footer-links a { display: block; color: #999; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-credit { text-align: right; }
+        .footer-credit p { color: #999; font-size: 14px; }
+        .footer-bottom { max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #333; text-align: center; }
+        .footer-bottom p { color: #666; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 20px; } .nav-links { display: none; } .mobile-toggle { display: block; }
+            .hero h1 { font-size: 38px; } .hero h2 { font-size: 18px; }
+            .about { padding: 60px 20px; } .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .services { padding: 60px 20px; } .services-grid { grid-template-columns: 1fr; }
+            .testimonials { padding: 60px 20px; } .testimonials-grid { flex-direction: column; align-items: center; }
+            .map-section { padding: 60px 20px; }
+            .contact { padding: 60px 20px; } .contact-grid { grid-template-columns: 1fr; }
+            .footer { padding: 40px 20px 20px; } .footer-inner { grid-template-columns: 1fr; gap: 30px; } .footer-credit { text-align: left; }
+            .section-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="#" class="navbar-brand">La Zone 23</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-toggle" onclick="document.querySelector('.mobile-menu').classList.add('active')">
+            <i data-lucide="menu" style="width:28px;height:28px;"></i>
+        </button>
+    </nav>
+    <div class="mobile-menu">
+        <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('active')">
+            <i data-lucide="x" style="width:28px;height:28px;"></i>
+        </button>
+        <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">About</a>
+        <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Menu</a>
+        <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Reviews</a>
+        <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Contact</a>
+    </div>
+
+    <section class="hero" style="opacity:1;transform:none;">
+        <div class="hero-content">
+            <div class="hero-label">Sandy Hill Ottawa &middot; Restaurant</div>
+            <h1>La Zone 23</h1>
+            <h2>Where flavour meets heart in the soul of Sandy Hill</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Our Menu</a>
+                <a href="#contact" class="btn-outline">Contact Us</a>
+            </div>
+        </div>
+        <div class="scroll-arrow"><i data-lucide="arrow-down" style="width:28px;height:28px;"></i></div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-title">A Perfect Five Stars for a Reason</h2>
+                <p>La Zone 23 is a neighbourhood restaurant tucked away on Mann Avenue in the heart of Sandy Hill. With a perfect 5.0-star rating on Google, we have earned the loyalty of our community through one simple principle: every dish that leaves our kitchen must be something we would proudly serve to our own family.</p>
+                <p>Our menu features fresh, flavourful dishes prepared with care and attention to detail. From hearty mains to lighter bites, every item is cooked to order using quality ingredients. We take pride in offering generous portions at fair prices because we believe great food should be accessible to everyone in our community.</p>
+                <p>Whether you are a University of Ottawa student looking for a satisfying lunch, a Sandy Hill local grabbing dinner after work, or someone exploring Ottawa's hidden gems, La Zone 23 welcomes you with warm hospitality and food that keeps you coming back. Come visit us on Mann Avenue and taste the difference for yourself.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://source.unsplash.com/800x600/?restaurant,food,plate" alt="Delicious food at La Zone 23">
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-inner">
+            <div class="section-label">What We Serve</div>
+            <h2 class="section-title">Our Menu Highlights</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="utensils" style="width:32px;height:32px;"></i></div>
+                    <h3>Grilled Plates</h3>
+                    <p>Juicy grilled meats and kebabs served with rice, fresh salads, and house-made sauces. Cooked over open flame for maximum flavour.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="salad" style="width:32px;height:32px;"></i></div>
+                    <h3>Fresh Salads</h3>
+                    <p>Crisp, vibrant salads made with seasonal vegetables and our signature dressings. A perfect light meal or a complement to any main dish.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="sandwich" style="width:32px;height:32px;"></i></div>
+                    <h3>Wraps and Sandwiches</h3>
+                    <p>Generous wraps packed with flavour and freshness. Ideal for a quick lunch or a satisfying meal on the go.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="soup" style="width:32px;height:32px;"></i></div>
+                    <h3>Soups and Stews</h3>
+                    <p>Comforting, slow-cooked soups and stews made from scratch daily. Perfect for warming up during Ottawa's cold winter months.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="coffee" style="width:32px;height:32px;"></i></div>
+                    <h3>Beverages</h3>
+                    <p>A selection of fresh juices, hot drinks, and specialty beverages to complement your meal or enjoy on their own.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="truck" style="width:32px;height:32px;"></i></div>
+                    <h3>Takeout and Delivery</h3>
+                    <p>Enjoy La Zone 23 from the comfort of your home. Order takeout directly or through your favourite delivery app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="reviews">
+        <div class="testimonials-inner">
+            <div class="section-label">What People Say</div>
+            <h2 class="section-title">Perfect 5-Star Reviews</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"Easily one of the best hidden gems in Sandy Hill. The food is incredible and the portions are very generous. The owner is so welcoming and genuinely cares about every customer."</p>
+                    <div class="reviewer">Daniel M. - Sandy Hill</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"I am a uOttawa student and this is my go-to lunch spot. The food is always fresh, the prices are fair, and the service is fast. I have recommended this place to all of my friends."</p>
+                    <div class="reviewer">Layla S. - Lowertown</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"We ordered takeout for a family dinner and everything was perfect. The grilled plates were cooked to perfection and the salads were so fresh. Will definitely order again."</p>
+                    <div class="reviewer">James T. - Vanier</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="section-label">Location</div>
+        <h2 class="section-title">Find Us In Ottawa</h2>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=La+Zone+23+Ottawa+Ontario&output=embed" width="100%" height="420" style="border:0;border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Come Visit Us on Mann Avenue</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <p style="color:var(--text-light);margin-bottom:24px;">Have a question about our menu, want to place a large order, or simply want to share your feedback? We would love to hear from you.</p>
+                    <form onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number">
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i data-lucide="phone" style="width:20px;height:20px;"></i>
+                        <div><strong>Phone</strong><span>(613) 565-2020</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                        <div><strong>Email</strong><span>lazone23mann@gmail.com</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+                        <div><strong>Address</strong><span>113 Mann Ave, Ottawa, ON K1N 5A4</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="clock" style="width:20px;height:20px;"></i>
+                        <div><strong>Hours</strong><span>Monday - Sunday: 11:00 AM - 9:00 PM</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">La Zone 23</div>
+                <p>Where flavour meets heart in Sandy Hill, Ottawa.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Menu</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-credit"><p>Website by CapitalSites Ottawa</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 La Zone 23. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

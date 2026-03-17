@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taste Junction | Old Ottawa South</title>
+    <meta name="description" content="Taste Junction serves flavourful dishes on Bank Street in Old Ottawa South. Rated 4.9 stars on Google with rave reviews.">
+    <meta name="keywords" content="restaurant Ottawa, Bank Street, Old Ottawa South, Taste Junction, food Ottawa, dining">
+    <meta property="og:title" content="Taste Junction | Ottawa">
+    <meta property="og:description" content="Near-perfect 4.9-star restaurant on Bank Street in Old Ottawa South. Fresh, flavourful, unforgettable.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #1A1A2E;
+            --secondary: #F5F3EE;
+            --accent: #E07A2F;
+            --bg: #FFFFFF;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; }
+        .navbar.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.1); padding: 14px 40px; }
+        .navbar-brand { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: var(--white); text-decoration: none; }
+        .navbar.scrolled .navbar-brand { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 32px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s ease; }
+        .navbar.scrolled .nav-links a { color: var(--text); }
+        .nav-links a:hover { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; }
+        .navbar.scrolled .mobile-toggle { color: var(--text); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--white); z-index: 1001; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 22px; color: var(--text); text-decoration: none; font-weight: 600; }
+        .mobile-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--text); }
+
+        .hero { height: 100vh; background-image: url('https://source.unsplash.com/1600x900/?indian-food,curry,spices'); background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.52); }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 20px; }
+        .hero-label { text-transform: uppercase; font-size: 14px; letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
+        .hero h1 { font-family: 'Syne', sans-serif; font-size: 68px; font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 16px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.2s forwards; }
+        .hero h2 { font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 36px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.4s forwards; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.6s forwards; }
+        .btn-primary { background: var(--accent); color: var(--white); padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-primary:hover { transform: scale(1.03); }
+        .btn-outline { background: transparent; color: var(--white); padding: 14px 32px; border: 2px solid var(--white); border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-outline:hover { transform: scale(1.03); }
+        .scroll-arrow { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1; color: var(--white); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(12px); } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        section { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-label { text-transform: uppercase; font-size: 13px; letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+        .section-title { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 700; color: var(--text); margin-bottom: 24px; }
+
+        .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 55% 45%; gap: 60px; align-items: center; }
+        .about-text p { color: var(--text-light); margin-bottom: 16px; font-size: 16px; }
+        .about-image img { width: 100%; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+
+        .services { background: var(--secondary); padding: 100px 40px; }
+        .services-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+        .service-card { background: var(--white); border-radius: 16px; padding: 36px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .service-card .icon { color: var(--accent); margin-bottom: 16px; }
+        .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .service-card p { color: var(--text-light); font-size: 15px; }
+
+        .testimonials { background: var(--primary); padding: 100px 40px; }
+        .testimonials-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .testimonials .section-label { color: var(--accent); }
+        .testimonials .section-title { color: var(--white); }
+        .testimonials-grid { display: flex; gap: 24px; margin-top: 50px; flex-wrap: wrap; justify-content: center; }
+        .testimonial-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 36px 28px; flex: 1; min-width: 280px; max-width: 380px; }
+        .stars { margin-bottom: 16px; }
+        .stars i { color: #F59E0B; width: 20px; height: 20px; }
+        .testimonial-card p { color: var(--white); font-style: italic; font-size: 16px; margin-bottom: 20px; line-height: 1.7; }
+        .reviewer { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+        .map-section { padding: 100px 40px; text-align: center; }
+        .map-section .map-container { max-width: 1200px; margin: 40px auto 0; }
+        .map-section iframe { width: 100%; height: 420px; border: none; border-radius: 12px; }
+
+        .contact { padding: 100px 40px; background: var(--secondary); }
+        .contact-inner { max-width: 1200px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 60% 40%; gap: 60px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Manrope', sans-serif; font-size: 15px; margin-bottom: 16px; transition: border-color 0.2s ease; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
+        .contact-form button { background: var(--accent); color: var(--white); padding: 14px 36px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s ease; }
+        .contact-form button:hover { transform: scale(1.03); }
+        .contact-info-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
+        .contact-info-item i { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+        .contact-info-item strong { display: block; margin-bottom: 4px; }
+        .contact-info-item span { color: var(--text-light); font-size: 15px; }
+
+        .footer { background: #111111; padding: 60px 40px 30px; color: var(--white); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-brand { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .footer p { color: #999; font-size: 14px; line-height: 1.6; }
+        .footer-links a { display: block; color: #999; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-credit { text-align: right; }
+        .footer-credit p { color: #999; font-size: 14px; }
+        .footer-bottom { max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #333; text-align: center; }
+        .footer-bottom p { color: #666; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 20px; } .nav-links { display: none; } .mobile-toggle { display: block; }
+            .hero h1 { font-size: 38px; } .hero h2 { font-size: 18px; }
+            .about { padding: 60px 20px; } .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .services { padding: 60px 20px; } .services-grid { grid-template-columns: 1fr; }
+            .testimonials { padding: 60px 20px; } .testimonials-grid { flex-direction: column; align-items: center; }
+            .map-section { padding: 60px 20px; }
+            .contact { padding: 60px 20px; } .contact-grid { grid-template-columns: 1fr; }
+            .footer { padding: 40px 20px 20px; } .footer-inner { grid-template-columns: 1fr; gap: 30px; } .footer-credit { text-align: left; }
+            .section-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="#" class="navbar-brand">Taste Junction</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-toggle" onclick="document.querySelector('.mobile-menu').classList.add('active')">
+            <i data-lucide="menu" style="width:28px;height:28px;"></i>
+        </button>
+    </nav>
+    <div class="mobile-menu">
+        <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('active')">
+            <i data-lucide="x" style="width:28px;height:28px;"></i>
+        </button>
+        <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">About</a>
+        <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Menu</a>
+        <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Reviews</a>
+        <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Contact</a>
+    </div>
+
+    <section class="hero" style="opacity:1;transform:none;">
+        <div class="hero-content">
+            <div class="hero-label">Old Ottawa South &middot; Restaurant</div>
+            <h1>Taste Junction</h1>
+            <h2>Bold flavours and fresh ingredients where Bank Street comes alive</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Our Menu</a>
+                <a href="#contact" class="btn-outline">Contact Us</a>
+            </div>
+        </div>
+        <div class="scroll-arrow"><i data-lucide="arrow-down" style="width:28px;height:28px;"></i></div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-label">About Us</div>
+                <h2 class="section-title">Where Every Bite Tells a Story</h2>
+                <p>Taste Junction is a vibrant neighbourhood restaurant on Bank Street in Old Ottawa South, bringing bold and exciting flavours to one of Ottawa's most beloved streets. With a near-perfect 4.9-star Google rating, our commitment to quality food and warm service speaks for itself.</p>
+                <p>Our kitchen blends traditional recipes with fresh, locally sourced ingredients to create dishes that are both comforting and exciting. Every plate is prepared with care by our team of experienced cooks who pour passion into every meal. From aromatic curries to sizzling grilled plates, our menu is designed to take your taste buds on a journey.</p>
+                <p>We believe food brings people together. Whether you are dining in with friends, picking up a quick lunch, or ordering for a family gathering, Taste Junction is here to make every meal memorable. Join us on Bank Street and discover why our customers keep coming back.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://source.unsplash.com/800x600/?curry,spices,food" alt="Delicious food at Taste Junction">
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-inner">
+            <div class="section-label">What We Serve</div>
+            <h2 class="section-title">Flavours That Excite</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="flame" style="width:32px;height:32px;"></i></div>
+                    <h3>Signature Curries</h3>
+                    <p>Rich, aromatic curries slow-cooked with premium spices and fresh ingredients. Choose from mild to fiery and pair with naan or rice.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="utensils" style="width:32px;height:32px;"></i></div>
+                    <h3>Grilled Specialties</h3>
+                    <p>Tender kebabs and grilled meats marinated in our house blend of spices and cooked to juicy perfection. Served with fresh sides.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="salad" style="width:32px;height:32px;"></i></div>
+                    <h3>Fresh Sides and Salads</h3>
+                    <p>Complement your meal with our selection of fresh salads, raita, chutneys, and traditional sides made from scratch daily.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="wheat" style="width:32px;height:32px;"></i></div>
+                    <h3>Biryani Plates</h3>
+                    <p>Fragrant basmati rice layered with tender meat and aromatic spices, slow-cooked to perfection. A house favourite every time.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="sandwich" style="width:32px;height:32px;"></i></div>
+                    <h3>Wraps and Rolls</h3>
+                    <p>Freshly made wraps packed with flavourful fillings. Perfect for a quick and satisfying meal on the go.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="users" style="width:32px;height:32px;"></i></div>
+                    <h3>Catering and Large Orders</h3>
+                    <p>Planning a party or office event? We offer catering packages with a variety of our most popular dishes for groups of any size.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="reviews">
+        <div class="testimonials-inner">
+            <div class="section-label">Customer Reviews</div>
+            <h2 class="section-title">4.9 Stars on Google</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"The biryani here is absolutely outstanding. Perfectly spiced, generous portions, and the meat just falls apart. This is the best on Bank Street without question."</p>
+                    <div class="reviewer">Priya R. - Old Ottawa South</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"Discovered this place last month and I have been back three times already. The flavours are incredible and the owners are so welcoming. A real hidden gem in the neighbourhood."</p>
+                    <div class="reviewer">Marcus T. - Glebe</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"We ordered catering for our office lunch and it was a huge hit. Everything arrived hot and fresh, and the variety was perfect. Everyone was asking for the name of the restaurant."</p>
+                    <div class="reviewer">Lisa W. - Centretown</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="section-label">Location</div>
+        <h2 class="section-title">Find Us In Ottawa</h2>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Taste+Junction+Ottawa+Ontario&output=embed" width="100%" height="420" style="border:0;border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Visit Us on Bank Street</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <p style="color:var(--text-light);margin-bottom:24px;">Questions about our menu, want to place a catering order, or have feedback to share? Drop us a message and we will get back to you.</p>
+                    <form onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number">
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i data-lucide="phone" style="width:20px;height:20px;"></i>
+                        <div><strong>Phone</strong><span>(613) 733-8012</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                        <div><strong>Email</strong><span>tastejunctionca@gmail.com</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+                        <div><strong>Address</strong><span>1196 Bank St, Ottawa, ON K1S 3Y1</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="clock" style="width:20px;height:20px;"></i>
+                        <div><strong>Hours</strong><span>Monday - Sunday: 11:00 AM - 10:00 PM</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">Taste Junction</div>
+                <p>Bold flavours and fresh ingredients on Bank Street in Old Ottawa South.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Menu</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-credit"><p>Website by CapitalSites Ottawa</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Taste Junction. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

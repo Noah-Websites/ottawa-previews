@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shirin Market | Kanata Ottawa</title>
+    <meta name="description" content="Shirin Market is Kanata's trusted halal grocery and meat shop on March Road. Premium cuts, Mediterranean products, and Middle Eastern specialties.">
+    <meta name="keywords" content="halal grocery Ottawa, halal meat Kanata, March Road, Mediterranean grocery, Middle Eastern food Kanata">
+    <meta property="og:title" content="Shirin Market | Ottawa">
+    <meta property="og:description" content="Premium halal grocery and meat shop in Kanata, Ottawa. Fresh cuts and international products.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary: #2D5A27;
+            --secondary: #F5F2EC;
+            --accent: #D4960A;
+            --bg: #FFFFFF;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; }
+        .navbar.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.1); padding: 14px 40px; }
+        .navbar-brand { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; color: var(--white); text-decoration: none; }
+        .navbar.scrolled .navbar-brand { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 32px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s ease; }
+        .navbar.scrolled .nav-links a { color: var(--text); }
+        .nav-links a:hover { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; }
+        .navbar.scrolled .mobile-toggle { color: var(--text); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--white); z-index: 1001; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { font-size: 22px; color: var(--text); text-decoration: none; font-weight: 600; }
+        .mobile-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--text); }
+
+        .hero { height: 100vh; background-image: url('https://source.unsplash.com/1600x900/?grocery,market,halal'); background-size: cover; background-position: center; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.52); }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 20px; }
+        .hero-label { text-transform: uppercase; font-size: 14px; letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
+        .hero h1 { font-family: 'DM Serif Display', serif; font-size: 68px; font-weight: 400; color: var(--white); line-height: 1.1; margin-bottom: 16px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.2s forwards; }
+        .hero h2 { font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 36px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.4s forwards; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease 0.6s forwards; }
+        .btn-primary { background: var(--primary); color: var(--white); padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-primary:hover { transform: scale(1.03); }
+        .btn-outline { background: transparent; color: var(--white); padding: 14px 32px; border: 2px solid var(--white); border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: transform 0.2s ease; }
+        .btn-outline:hover { transform: scale(1.03); }
+        .scroll-arrow { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1; color: var(--white); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(12px); } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        section { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-label { text-transform: uppercase; font-size: 13px; letter-spacing: 3px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: 42px; font-weight: 400; color: var(--text); margin-bottom: 24px; }
+
+        .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 55% 45%; gap: 60px; align-items: center; }
+        .about-text p { color: var(--text-light); margin-bottom: 16px; font-size: 16px; }
+        .about-image img { width: 100%; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+
+        .services { background: var(--secondary); padding: 100px 40px; }
+        .services-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+        .service-card { background: var(--white); border-radius: 16px; padding: 36px 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+        .service-card .icon { color: var(--accent); margin-bottom: 16px; }
+        .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .service-card p { color: var(--text-light); font-size: 15px; }
+
+        .testimonials { background: var(--primary); padding: 100px 40px; }
+        .testimonials-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .testimonials .section-label { color: var(--accent); }
+        .testimonials .section-title { color: var(--white); }
+        .testimonials-grid { display: flex; gap: 24px; margin-top: 50px; flex-wrap: wrap; justify-content: center; }
+        .testimonial-card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 36px 28px; flex: 1; min-width: 280px; max-width: 380px; }
+        .stars { margin-bottom: 16px; }
+        .stars i { color: #F59E0B; width: 20px; height: 20px; }
+        .testimonial-card p { color: var(--white); font-style: italic; font-size: 16px; margin-bottom: 20px; line-height: 1.7; }
+        .reviewer { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+        .map-section { padding: 100px 40px; text-align: center; }
+        .map-section .map-container { max-width: 1200px; margin: 40px auto 0; }
+        .map-section iframe { width: 100%; height: 420px; border: none; border-radius: 12px; }
+
+        .contact { padding: 100px 40px; background: var(--secondary); }
+        .contact-inner { max-width: 1200px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 60% 40%; gap: 60px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 14px 18px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; margin-bottom: 16px; transition: border-color 0.2s ease; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary); }
+        .contact-form button { background: var(--primary); color: var(--white); padding: 14px 36px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s ease; }
+        .contact-form button:hover { transform: scale(1.03); }
+        .contact-info-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
+        .contact-info-item i { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+        .contact-info-item strong { display: block; margin-bottom: 4px; }
+        .contact-info-item span { color: var(--text-light); font-size: 15px; }
+
+        .footer { background: #111111; padding: 60px 40px 30px; color: var(--white); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .footer-brand { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 10px; }
+        .footer p { color: #999; font-size: 14px; line-height: 1.6; }
+        .footer-links a { display: block; color: #999; text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-credit { text-align: right; }
+        .footer-credit p { color: #999; font-size: 14px; }
+        .footer-bottom { max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #333; text-align: center; }
+        .footer-bottom p { color: #666; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 38px; }
+            .hero h2 { font-size: 18px; }
+            .about { padding: 60px 20px; }
+            .about-grid { grid-template-columns: 1fr; gap: 30px; }
+            .services { padding: 60px 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .testimonials { padding: 60px 20px; }
+            .testimonials-grid { flex-direction: column; align-items: center; }
+            .map-section { padding: 60px 20px; }
+            .contact { padding: 60px 20px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer { padding: 40px 20px 20px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+            .footer-credit { text-align: left; }
+            .section-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="#" class="navbar-brand">Shirin Market</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-toggle" onclick="document.querySelector('.mobile-menu').classList.add('active')">
+            <i data-lucide="menu" style="width:28px;height:28px;"></i>
+        </button>
+    </nav>
+    <div class="mobile-menu">
+        <button class="mobile-close" onclick="document.querySelector('.mobile-menu').classList.remove('active')">
+            <i data-lucide="x" style="width:28px;height:28px;"></i>
+        </button>
+        <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">About</a>
+        <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Services</a>
+        <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Reviews</a>
+        <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Contact</a>
+    </div>
+
+    <section class="hero" style="opacity:1;transform:none;">
+        <div class="hero-content">
+            <div class="hero-label">Kanata Ottawa &middot; Halal Grocery &amp; Meat Shop</div>
+            <h1>Shirin Market</h1>
+            <h2>Your trusted source for premium halal meats and international groceries on March Road</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Our Services</a>
+                <a href="#contact" class="btn-outline">Contact Us</a>
+            </div>
+        </div>
+        <div class="scroll-arrow"><i data-lucide="arrow-down" style="width:28px;height:28px;"></i></div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-label">About Us</div>
+                <h2 class="section-title">Kanata's Favourite Halal Market</h2>
+                <p>Shirin Market has been serving the Kanata community for over a decade, providing families with the freshest halal meats and a carefully curated selection of Mediterranean, Middle Eastern, and South Asian groceries. Located on March Road, we have become the go-to destination for quality halal products in west Ottawa.</p>
+                <p>Our butcher counter features premium cuts of lamb, beef, chicken, and goat, all hand-selected and prepared to our exacting standards. Whether you need a rack of lamb for a weekend dinner or ground beef for a weeknight meal, our experienced butchers are here to help you choose the perfect cut and prepare it exactly the way you like.</p>
+                <p>Beyond our meat counter, our shelves are stocked with authentic products from Iran, Turkey, India, and across the Middle East. From fragrant saffron and premium basmati rice to specialty cheeses and freshly baked breads, Shirin Market brings the flavours of home to Kanata. We are proud to be part of this community and look forward to serving you.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://source.unsplash.com/800x600/?halal-meat,butcher,grocery" alt="Fresh halal meats at Shirin Market">
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-inner">
+            <div class="section-label">What We Offer</div>
+            <h2 class="section-title">Quality Products, Every Visit</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="beef" style="width:32px;height:32px;"></i></div>
+                    <h3>Premium Halal Meats</h3>
+                    <p>Hand-selected cuts of lamb, beef, chicken, and goat. Our butchers prepare every order with care and precision to your specifications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="shopping-basket" style="width:32px;height:32px;"></i></div>
+                    <h3>International Groceries</h3>
+                    <p>A wide selection of products from Iran, Turkey, India, and the Middle East. Find everything from spices and rice to specialty sauces and condiments.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="milk" style="width:32px;height:32px;"></i></div>
+                    <h3>Dairy and Cheese</h3>
+                    <p>Imported and local cheeses including feta, halloumi, labneh, and more. We carry a variety of Mediterranean and Middle Eastern dairy products.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="wheat" style="width:32px;height:32px;"></i></div>
+                    <h3>Rice, Grains and Legumes</h3>
+                    <p>Premium basmati rice, lentils, chickpeas, and specialty grains sourced from trusted suppliers for authentic home cooking.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="cherry" style="width:32px;height:32px;"></i></div>
+                    <h3>Fresh Produce</h3>
+                    <p>Seasonal fruits and vegetables alongside specialty items like fresh herbs, pomegranates, dates, and other hard-to-find produce.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i data-lucide="cookie" style="width:32px;height:32px;"></i></div>
+                    <h3>Sweets and Snacks</h3>
+                    <p>Traditional Middle Eastern sweets, cookies, Turkish delight, and a variety of international snacks for every taste and occasion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="reviews">
+        <div class="testimonials-inner">
+            <div class="section-label">Customer Reviews</div>
+            <h2 class="section-title">Trusted by Kanata Families</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"Best halal butcher in Kanata by far. The meat is always fresh and the staff are so helpful. They cut everything exactly how I ask. Been coming here for years."</p>
+                    <div class="reviewer">Fatima A. - Kanata North</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"I love the selection of Persian products here. Saffron, dried limes, barberries, everything I need for authentic Persian cooking. So glad we have this in Kanata."</p>
+                    <div class="reviewer">Reza K. - Kanata South</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;"></i>
+                    </div>
+                    <p>"Great prices and amazing quality. The lamb chops here are incredible. The owners are very friendly and always remember our family. Highly recommend to everyone."</p>
+                    <div class="reviewer">Omar H. - Stittsville</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <div class="section-label">Location</div>
+        <h2 class="section-title">Find Us In Ottawa</h2>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=Shirin+Market+Kanata+Ottawa+Ontario&output=embed" width="100%" height="420" style="border:0;border-radius:12px;" loading="lazy" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">Visit Us Today</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <p style="color:var(--text-light);margin-bottom:24px;">Questions about our products, looking for something specific, or want to place a special order? Get in touch and our team will be happy to help.</p>
+                    <form onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number">
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <i data-lucide="phone" style="width:20px;height:20px;"></i>
+                        <div><strong>Phone</strong><span>(613) 591-7001</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                        <div><strong>Email</strong><span>shirinmarket.ca@gmail.com</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+                        <div><strong>Address</strong><span>700 March Rd, Kanata, ON K2K 2V9</span></div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i data-lucide="clock" style="width:20px;height:20px;"></i>
+                        <div><strong>Hours</strong><span>Monday - Saturday: 10:00 AM - 8:00 PM<br>Sunday: 11:00 AM - 6:00 PM</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">Shirin Market</div>
+                <p>Kanata's trusted halal grocery and meat shop. Premium products from around the world.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Products</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-credit"><p>Website by CapitalSites Ottawa</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Shirin Market. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 80) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
