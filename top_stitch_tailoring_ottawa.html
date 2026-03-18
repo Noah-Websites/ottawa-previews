@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Stitch Tailoring | Carling/Westboro Ottawa</title>
+    <meta name="description" content="Professional tailoring and alterations in Westboro Ottawa. Specializing in leather, fur, suits, wedding dresses, and all garment alterations. 5+ years experience.">
+    <meta name="keywords" content="tailor Ottawa, alterations Westboro, leather alterations, fur alterations, suit tailoring, wedding dress alterations">
+    <meta property="og:title" content="Top Stitch Tailoring | Ottawa">
+    <meta property="og:description" content="Professional tailoring and alterations in Westboro Ottawa.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1B2A4A;
+            --secondary: #F5F0EB;
+            --accent: #C9A96E;
+            --bg: #FAFAF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: transparent;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav.scrolled .nav-brand {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--white);
+            z-index: 1001;
+        }
+
+        nav.scrolled .menu-toggle {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--primary);
+            z-index: 999;
+            padding: 8rem 2rem 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('https://source.unsplash.com/1600x900/?tailor,sewing');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.52);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0s forwards;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.2s forwards;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.4s forwards;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 24px rgba(27, 42, 74, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-outline:hover {
+            transform: scale(1.03);
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-12px);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 3.75rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.8s ease;
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background-color: var(--secondary);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i {
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            margin-bottom: 1.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stars i {
+            color: #F59E0B;
+            width: 20px;
+            height: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 6rem 2rem;
+            background-color: var(--bg);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 35%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-intro {
+            margin-bottom: 2.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            max-width: 600px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.875rem;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            align-self: flex-start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .contact-item-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary);
+        }
+
+        .contact-item-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-item-content a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-content a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about h2,
+            .services h2,
+            .testimonials h2,
+            .map-section h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .hero-label {
+                font-size: 0.75rem;
+            }
+
+            .about {
+                padding: 3rem 1rem;
+            }
+
+            .services {
+                padding: 3rem 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials {
+                padding: 3rem 1rem;
+            }
+
+            .map-section {
+                padding: 3rem 1rem;
+            }
+
+            .contact {
+                padding: 3rem 1rem;
+            }
+
+            .contact-item {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-brand">Top Stitch Tailoring</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle">
+            <i data-lucide="menu" width="24" height="24"></i>
+        </button>
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="menu-toggle" id="menuClose" style="align-self: flex-end;">
+                <i data-lucide="x" width="24" height="24"></i>
+            </button>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-label">Carling/Westboro Ottawa - Tailor and Alterations</p>
+            <h1>Top Stitch Tailoring</h1>
+            <h2>Expert Tailoring and Professional Alterations for Every Garment</h2>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+        <div class="arrow-down">
+            <i data-lucide="arrow-down" width="28" height="28"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-reveal" id="about">
+        <p class="section-label">About Us</p>
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Your Trusted Tailor Since 2019</h2>
+                <p>Top Stitch Tailoring has been serving the Carling and Westboro communities for over five years with exceptional attention to detail and craftsmanship. We pride ourselves on understanding that every garment tells a story, and we're committed to preserving and enhancing that story through our professional alterations and tailoring services.</p>
+                <p>Our specialization in leather and fur alterations sets us apart from conventional tailoring shops. Whether you need delicate leather jacket adjustments, fur coat repairs, or intricate detailing work, our experienced team brings expertise and precision to every project. We understand the unique requirements of working with luxury materials and treat each piece with the utmost care.</p>
+                <p>From wedding dress alterations to winter jacket modifications, men's suit tailoring to bridesmaid dress adjustments, we handle all types of garments with the same level of dedication and excellence. We believe that well-fitted clothing builds confidence, and our mission is to ensure every client leaves our shop feeling absolutely perfect in their altered garments.</p>
+            </div>
+            <img src="https://source.unsplash.com/800x600/?tailoring,fabric" alt="Professional tailoring workspace" class="about-image">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section-reveal" id="services">
+        <div class="services-container">
+            <p class="section-label">Our Services</p>
+            <h2>What We Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>Leather Alterations</h3>
+                    <p>Specialized alterations for leather jackets, coats, and accessories. We handle repairs, resizing, and custom modifications with precision and care for premium leather materials.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>Fur Garment Repair</h3>
+                    <p>Expert restoration and alteration of fur coats, stoles, and accessories. Our skilled craftspeople ensure your luxury furs are beautifully maintained and expertly adjusted.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>Suit Tailoring</h3>
+                    <p>Professional alterations for men's and women's suits. From hemming and tapering to jacket adjustments, we ensure the perfect fit for every body type and style preference.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>Wedding Dress Alterations</h3>
+                    <p>Specialized bridal services for wedding and bridesmaid dresses. We handle hem adjustments, bustle installation, and delicate beading with exceptional attention to detail.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>Winter Jacket Alterations</h3>
+                    <p>Expert modifications for winter coats, parkas, and cold weather outerwear. Hemming, sleeve adjustments, and insulation preservation are handled with care and expertise.</p>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="scissors"></i>
+                    <h3>General Alterations</h3>
+                    <p>Comprehensive tailoring services for all garment types. Hemming, tapering, zipper replacement, and custom adjustments to ensure perfect fit for everyday clothing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section-reveal" id="testimonials">
+        <div class="testimonials-container">
+            <p class="section-label">Client Reviews</p>
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"I brought my leather jacket in for a complete overhaul and the team transformed it beautifully. The attention to detail was incredible, and my jacket looks brand new. I would highly recommend Top Stitch Tailoring to anyone with leather goods."</p>
+                    <p class="testimonial-author">Maria K., Westboro</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"My wedding dress needed several alterations and I was nervous trusting someone with such an important garment. The team at Top Stitch treated it like it was their own. The fit is absolutely perfect and I felt beautiful on my big day."</p>
+                    <p class="testimonial-author">Sarah M., Carling</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                        <i data-lucide="star"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been taking my suits here for five years now. The quality of work is consistently exceptional, turnaround time is quick, and the prices are fair. These are the tailors I trust with all my important garments."</p>
+                    <p class="testimonial-author">James D., Westboro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section section-reveal" id="map">
+        <div class="map-container">
+            <h2>Find Us In Ottawa</h2>
+            <div class="map-wrapper">
+                <iframe src="https://maps.google.com/maps?q=Top+Stitch+Tailoring+Ottawa+Ontario&output=embed" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-reveal" id="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <p class="contact-intro">Have a garment that needs professional attention? We're here to help. Fill out the form below or contact us directly using the information provided. We look forward to working with you.</p>
+            <div class="contact-grid">
+                <div>
+                    <form class="contact-form" onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <div class="contact-item-content">
+                            <h4>Phone</h4>
+                            <p><a href="tel:613-680-8500">613-680-8500</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div class="contact-item-content">
+                            <h4>Email</h4>
+                            <p><a href="mailto:topstitchtailoring.ca@gmail.com">topstitchtailoring.ca@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <div class="contact-item-content">
+                            <h4>Address</h4>
+                            <p>1769 Carling Ave<br>Ottawa, ON K2A 1C9</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="clock"></i>
+                        <div class="contact-item-content">
+                            <h4>Hours</h4>
+                            <p>Monday - Friday: 10:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Top Stitch Tailoring</h4>
+                <p>Professional tailoring and alterations in the Carling and Westboro communities of Ottawa. Specializing in leather, fur, suits, wedding dresses, and all garment alterations.</p>
+                <p style="margin-top: 1rem;">Copyright 2026 Top Stitch Tailoring. All Rights Reserved.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Website</h4>
+                <p>Website by CapitalSites Ottawa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll reveal animations
+        const revealElements = document.querySelectorAll('.section-reveal');
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastic Tailors &amp; Cleaners | Vanier Ottawa</title>
+    <meta name="description" content="Professional tailoring and dry cleaning in Vanier Ottawa. Over 10 years of expert alterations and garment care on Montreal Road.">
+    <meta name="keywords" content="tailor Ottawa, dry cleaning Vanier, alterations Montreal Road, garment care Ottawa">
+    <meta property="og:title" content="Fantastic Tailors &amp; Cleaners | Ottawa">
+    <meta property="og:description" content="Professional tailoring and dry cleaning in Vanier Ottawa.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #1B2A4A;
+            --secondary: #F5F0EB;
+            --accent: #C9A96E;
+            --bg: #FAFAF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+        }
+
+        /* NAVBAR STYLES */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 40px;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .navbar-brand {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background: var(--primary);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), url('https://source.unsplash.com/1600x900/?dry+cleaning,garments') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0s forwards;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            max-width: 900px;
+        }
+
+        .hero h2 {
+            font-size: 22px;
+            font-weight: 400;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: scale(1.03);
+        }
+
+        .arrow-bounce {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(15px);
+            }
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .about p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            background: var(--secondary);
+            padding: 100px 40px;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .service-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* TESTIMONIALS SECTION */
+        .testimonials {
+            background: var(--primary);
+            color: var(--white);
+            padding: 100px 40px;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .star {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* MAP SECTION */
+        .map-section {
+            padding: 100px 40px;
+            background: var(--bg);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-container h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 420px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: var(--white);
+            padding: 14px 40px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            align-self: flex-start;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(201, 169, 110, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .info-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .info-content p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 50px 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                display: none;
+                position: absolute;
+                top: 80px;
+                right: 40px;
+                flex-direction: column;
+                background: var(--white);
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.scrolled .nav-links {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .navbar-brand {
+                font-size: 18px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 16px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 60px 20px;
+            }
+
+            .services {
+                padding: 60px 20px;
+            }
+
+            .testimonials {
+                padding: 60px 20px;
+            }
+
+            .map-section {
+                padding: 60px 20px;
+            }
+
+            .contact {
+                padding: 60px 20px;
+            }
+
+            .services h2,
+            .about h2,
+            .contact h2,
+            .testimonials h2,
+            .map-container h2 {
+                font-size: 32px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .contact-info {
+                gap: 25px;
+            }
+
+            .info-item {
+                gap: 15px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="navbar-brand">Fantastic Tailors & Cleaners</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-label">VANIER OTTAWA · TAILOR AND DRY CLEANING</div>
+        <h1>Fantastic Tailors & Cleaners</h1>
+        <h2>Expert tailoring and professional dry cleaning services for over 10 years</h2>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Our Services</button>
+            <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Contact Us</button>
+        </div>
+        <div class="arrow-bounce" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+            <svg data-lucide="arrow-down" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></svg>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content reveal">
+                <h2>About Us</h2>
+                <p>Fantastic Tailors & Cleaners has been a trusted fixture in the Vanier neighborhood for over 10 years. Located on Montreal Road, we have built our reputation on providing exceptional tailoring and dry cleaning services to our community.</p>
+                <p>Our team of skilled professionals takes pride in every garment that comes through our doors. Whether you need precise alterations, professional pressing, or expert dry cleaning, we deliver results that exceed expectations.</p>
+                <p>We understand that quality clothing deserves quality care. That's why we use the finest techniques and premium materials to ensure your garments look and feel their best, no matter what service you require.</p>
+            </div>
+            <img src="https://source.unsplash.com/800x600/?tailor,sewing+machine" alt="Professional tailoring at Fantastic Tailors & Cleaners" class="reveal">
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="scissors" width="48" height="48"></svg>
+                    </div>
+                    <h3>Suit Alterations</h3>
+                    <p>Expert tailoring for perfect fit. We handle jacket adjustments, trouser hemming, and sleeve alterations with precision and care.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="scissors" width="48" height="48"></svg>
+                    </div>
+                    <h3>Dress Alterations</h3>
+                    <p>Transform your dresses to fit perfectly. From hems to take-ins, we ensure every alteration enhances your garment's appearance.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="plus" width="48" height="48"></svg>
+                    </div>
+                    <h3>Dry Cleaning</h3>
+                    <p>Professional dry cleaning using advanced techniques to preserve fabric quality and extend the life of your favorite clothes.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="plus" width="48" height="48"></svg>
+                    </div>
+                    <h3>Garment Pressing</h3>
+                    <p>Expert pressing services to remove wrinkles and restore the crisp appearance of your garments in time for special occasions.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="scissors" width="48" height="48"></svg>
+                    </div>
+                    <h3>Hem and Repair</h3>
+                    <p>Skilled repairs for torn seams, broken zippers, and general garment maintenance to keep your clothes looking fresh.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg data-lucide="clock" width="48" height="48"></svg>
+                    </div>
+                    <h3>Seasonal Garment Care</h3>
+                    <p>Prepare your wardrobe for the season with our specialized cleaning and storage solutions for winter coats and summer wear.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been taking my suits to Fantastic Tailors for five years. The attention to detail is impeccable. They always get the fit exactly right."</p>
+                    <p class="testimonial-author">-- Michael C., Vanier</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"Best dry cleaning in Ottawa. My dresses always come back looking pristine. Their customer service is friendly and professional."</p>
+                    <p class="testimonial-author">-- Sarah L., Vanier</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"I needed emergency alterations for a wedding and they came through. Professional, reliable, and they take genuine care with your clothes."</p>
+                    <p class="testimonial-author">-- James R., Montreal Road</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section" id="map">
+        <div class="map-container">
+            <h2>Visit Us</h2>
+            <iframe class="map-frame" src="https://maps.google.com/maps?q=Fantastic+Tailors+Cleaners+Ottawa+Ontario&output=embed"></iframe>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <div class="contact-wrapper">
+                <form class="contact-form" onsubmit="alert('Thanks for your message! Please call us directly to get in touch.'); return false;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg data-lucide="phone" width="24" height="24"></svg>
+                        </div>
+                        <div class="info-content">
+                            <h3>Phone</h3>
+                            <p><a href="tel:6137421375">613-742-1375</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg data-lucide="mail" width="24" height="24"></svg>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p><a href="mailto:langchidang@yahoo.com">langchidang@yahoo.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg data-lucide="map-pin" width="24" height="24"></svg>
+                        </div>
+                        <div class="info-content">
+                            <h3>Address</h3>
+                            <p>286 Montreal Rd<br>Vanier, ON K1L 6B9<br>Canada</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <svg data-lucide="clock" width="24" height="24"></svg>
+                        </div>
+                        <div class="info-content">
+                            <h3>Hours</h3>
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 5:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Fantastic Tailors & Cleaners</h4>
+                <p>Professional tailoring and dry cleaning services in Vanier, Ottawa.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <p>Suit & Dress Alterations<br>Dry Cleaning<br>Garment Pressing<br>Hem & Repair</p>
+            </div>
+            <div class="footer-column">
+                <h4>Visit Us</h4>
+                <p>286 Montreal Rd, Vanier<br>ON K1L 6B9<br>613-742-1375</p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2026 Fantastic Tailors & Cleaners. All Rights Reserved. Website by CapitalSites Ottawa</p>
+        </div>
+    </footer>
+
+    <script>
+        // NAVBAR SCROLL AND HAMBURGER
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // INTERSECTION OBSERVER FOR SCROLL REVEAL
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+
+    <script>lucide.createIcons();</script>
+
+</body>
+</html>

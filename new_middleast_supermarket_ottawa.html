@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Middleast Supermarket | Alta Vista Ottawa</title>
+    <meta name="description" content="Ottawa's trusted Middle Eastern grocery store in Alta Vista. Halal meats, fresh produce, spices, and specialty products. Serving the community for over 10 years.">
+    <meta name="keywords" content="Middle Eastern grocery Ottawa, halal meat Alta Vista, spices Ottawa, Mediterranean food Billings Bridge">
+    <meta property="og:title" content="New Middleast Supermarket | Ottawa">
+    <meta property="og:description" content="Middle Eastern grocery store in Alta Vista Ottawa.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
+
+    <style>
+        :root {
+            --primary: #5C3D2E;
+            --secondary: #FDF6F0;
+            --accent: #D4A853;
+            --bg: #FAFAF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--dark);
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav.scrolled .nav-brand {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background-color: var(--text);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(92, 61, 46, 0.6), rgba(92, 61, 46, 0.6)), url('https://source.unsplash.com/1600x900/?middle+eastern+food,spices');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-label {
+            position: absolute;
+            top: 120px;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            animation: fadeInDown 0.8s ease 0.2s both;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--white);
+            animation: fadeInUp 0.8s ease 0.3s both;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.7s both;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(212, 168, 83, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+            transform: scale(1.03);
+        }
+
+        .hero-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .hero-arrow svg {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--secondary);
+            padding: 6rem 2rem;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(92, 61, 46, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            color: var(--accent);
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 4rem 2rem;
+            background-color: var(--white);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .map-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background-color: var(--bg);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: scale(1.03);
+            background-color: #4a2e21;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .contact-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .services h2,
+            .testimonials h2,
+            .about-content h2,
+            .contact h2,
+            .map-container h2 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                display: none;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.scrolled .nav-links {
+                background-color: var(--white);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--text);
+            }
+
+            .contact-item {
+                gap: 1rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .about {
+                padding: 3rem 2rem;
+            }
+
+            .services,
+            .testimonials,
+            .contact,
+            .map-section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding-top: 80px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero h2 {
+                font-size: 0.95rem;
+            }
+
+            .nav-brand {
+                font-size: 1rem;
+            }
+
+            .services h2,
+            .testimonials h2,
+            .about-content h2,
+            .contact h2,
+            .map-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-content p {
+                font-size: 0.95rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .contact-item {
+                flex-direction: row;
+            }
+
+            .hero-label {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a href="#" class="nav-brand">New Middleast Supermarket</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#map">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-label">ALTA VISTA OTTAWA · MIDDLE EASTERN GROCERY</div>
+        <div class="hero-content">
+            <h1>New Middleast Supermarket</h1>
+            <h2>Authentic Middle Eastern Products for Over 10 Years</h2>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="#services" class="btn btn-secondary">Explore Our Services</a>
+            </div>
+        </div>
+        <div class="hero-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content reveal">
+            <h2>About Us</h2>
+            <p>Welcome to New Middleast Supermarket, your trusted destination for authentic Middle Eastern groceries in Alta Vista, Ottawa. For over 10 years, we have been serving the community with passion and dedication, providing the finest quality products from the Middle East and Mediterranean regions.</p>
+            <p>Our store specializes in halal meats, fresh produce, premium spices, and specialty ingredients that bring the flavors of the Middle East to your kitchen. We work directly with trusted suppliers to ensure every product meets our high standards of quality and authenticity.</p>
+            <p>With nearly 450 positive Google reviews, we have built a strong reputation as the go-to grocery store for families seeking genuine Middle Eastern products. Our knowledgeable staff is always ready to help you find exactly what you need.</p>
+        </div>
+        <div class="about-image reveal">
+            <img src="https://source.unsplash.com/800x600/?grocery+store,market" alt="New Middleast Supermarket interior">
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2>Our Products & Services</h2>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    </div>
+                    <h3>Halal Meats</h3>
+                    <p>Premium halal meat selection including lamb, beef, and poultry from certified suppliers.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v8H4z"/><path d="M6 12v6M18 12v6M4 18h16"/></svg>
+                    </div>
+                    <h3>Fresh Produce</h3>
+                    <p>Daily fresh vegetables and fruits sourced to ensure peak quality and flavor.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L9.5 9H2l5.5 4-2 7 7-5 7 5-2-7 5.5-4h-7.5L12 2z"/></svg>
+                    </div>
+                    <h3>Spices & Seasonings</h3>
+                    <p>Extensive selection of authentic spices and Middle Eastern seasonings.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 9v4M16 9v4"/></svg>
+                    </div>
+                    <h3>Bakery & Breads</h3>
+                    <p>Traditional breads and baked goods made with authentic recipes.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4v2m4.22-15.39L7.78 18.61a2 2 0 0 0 .45 2.77l2.54 1.61a2 2 0 0 0 2.96-.45l8.44-13a2 2 0 0 0-.45-2.77l-2.54-1.61a2 2 0 0 0-2.96.45z"/></svg>
+                    </div>
+                    <h3>Dairy & Cheese</h3>
+                    <p>Selection of authentic Middle Eastern dairy products and specialty cheeses.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Specialty Imports</h3>
+                    <p>Carefully curated specialty items and imported products from across the Middle East.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"Excellent selection of halal meats and fresh produce. The staff is always helpful and the quality is consistent. This is my go-to store for all my Middle Eastern groceries."</p>
+                    <p class="testimonial-author">-- Sarah M., Alta Vista</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"Finally found a store with authentic spices and specialty products I could not find anywhere else. The prices are fair and the customer service is outstanding."</p>
+                    <p class="testimonial-author">-- Ahmed K., Billings Bridge</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                        <i data-lucide="star" style="width:20px;height:20px;fill:#F59E0B;color:#F59E0B;"></i>
+                    </div>
+                    <p class="testimonial-text">"Been shopping here for years and they never disappoint. The quality of their products, especially the bakery items and cheese selection, is unmatched in the area."</p>
+                    <p class="testimonial-author">-- Fatima H., South Keys</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map">
+        <div class="map-container">
+            <h2>Visit Us</h2>
+            <div class="map-iframe-wrapper">
+                <iframe src="https://maps.google.com/maps?q=New+Middleast+Supermarket+Ottawa+Ontario&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your message. We will get back to you soon.');">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h3>Address</h3>
+                            <p>1755 Bank St<br>Ottawa, ON K1V 7Z4<br>Canada</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:613-526-3423">613-526-3423</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:middleastmarket@hotmail.com">middleastmarket@hotmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 8:00 PM<br>Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 New Middleast Supermarket. All rights reserved.</p>
+        <p>Website by CapitalSites Ottawa</p>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close hamburger when link clicked
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

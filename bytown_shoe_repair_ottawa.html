@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
     <title>Bytown Shoe Repair | ByWard Market Ottawa</title>
+    <meta name="description" content="Expert shoe repair and leather work in Ottawa's ByWard Market. Over 15 years of trusted craftsmanship. Honest assessments, fair pricing, quality restoration.">
+    <meta name="keywords" content="shoe repair Ottawa, cobbler ByWard Market, leather work Ottawa, shoe restoration Lowertown">
+    <meta property="og:title" content="Bytown Shoe Repair | Ottawa">
+    <meta property="og:description" content="Expert shoe repair and leather work in ByWard Market Ottawa.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="noindex, nofollow">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <style>
+        :root {
+            --primary: #3C2415;
+            --secondary: #F5F0EB;
+            --accent: #C17F3E;
+            --bg: #FAFAF8;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #ffffff;
+            --dark: #111111;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #3E2723;
-            --secondary: #F5F0E8;
-            --accent: #8D6E63;
-            --bg: #FAF8F5;
-            --text: #2C2C2C;
-            --text-light: #777777;
-            --white: #ffffff;
-            --dark: #111111;
         }
 
         html {
@@ -35,162 +37,233 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Manrope', sans-serif;
             color: var(--text);
+            background-color: var(--bg);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Navbar */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* NAVBAR */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            width: 100%;
+            height: 80px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
+            justify-content: space-between;
+            padding: 0 40px;
+            background-color: transparent;
             z-index: 1000;
-            transition: all 0.3s ease;
-            background: transparent;
+            transition: background-color 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+        .nav-brand {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            letter-spacing: -0.5px;
         }
 
-        .logo:hover {
-            color: var(--accent);
+        nav.scrolled .nav-brand {
+            color: var(--primary);
+        }
+
+        nav:not(.scrolled) .nav-brand {
+            color: var(--white);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--white);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 14px;
             transition: color 0.3s ease;
-            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
+        .menu-toggle {
             display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
             background: none;
             border: none;
-            padding: 0;
+            cursor: pointer;
+            z-index: 1001;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-            transition: all 0.3s ease;
+        .menu-toggle svg {
+            width: 28px;
+            height: 28px;
+            color: var(--white);
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+        nav.scrolled .menu-toggle svg {
+            color: var(--text);
         }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background-color: var(--white);
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                color: var(--text);
+                padding: 12px 0;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
         }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
-
-        /* Hero Section */
+        /* HERO */
         .hero {
-            height: 100vh;
-            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)), url('https://source.unsplash.com/1600x900/?shoe+repair,cobbler') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
+            margin-top: 80px;
+            position: relative;
             overflow: hidden;
-            margin-top: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://source.unsplash.com/1600x900/?shoe,repair,leather') center/cover no-repeat;
-            z-index: 1;
-            animation: zoomIn 15s ease-out;
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(1.05);
-            }
-            to {
-                transform: scale(1);
-            }
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(62, 39, 35, 0.55);
-            z-index: 2;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
+            max-width: 700px;
+            padding: 0 20px;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Manrope', sans-serif;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .bounce-arrow {
+            animation: bounce 2.5s infinite;
+            animation-delay: 0.8s;
         }
 
         @keyframes fadeInUp {
@@ -204,153 +277,73 @@
             }
         }
 
-        .hero-label {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            animation: fadeInUp 1s ease-out 0.2s backwards;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 68px;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
-        }
-
-        .hero h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.95);
-            animation: fadeInUp 1s ease-out 0.6s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.8s backwards;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(62, 39, 35, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .scroll-arrow {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            animation: bounce 2.5s infinite;
-        }
-
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
+            0%, 100% {
+                transform: translateY(0);
             }
-            40% {
-                transform: translateX(-50%) translateY(-15px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
+            50% {
+                transform: translateY(-15px);
             }
         }
 
-        /* About Section */
+        /* ABOUT */
         .about {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            text-align: center;
+            padding: 100px 40px;
+            background-color: var(--white);
         }
 
         .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 55% 45%;
+            gap: 60px;
             align-items: center;
         }
 
-        .about-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            max-height: 500px;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-content h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+        .about-content h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
             color: var(--primary);
-            margin-bottom: 1.5rem;
         }
 
         .about-content p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
+            font-size: 16px;
             line-height: 1.8;
-            font-size: 1rem;
         }
 
-        /* Services Section */
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: url('https://source.unsplash.com/800x600/?leather,craftsman') center/cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                padding: 60px 20px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-content h2 {
+                font-size: 36px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+
+        /* SERVICES */
         .services {
-            padding: 6rem 2rem;
-            background: var(--secondary);
+            padding: 100px 40px;
+            background-color: var(--secondary);
         }
 
         .services-container {
@@ -358,58 +351,66 @@
             margin: 0 auto;
         }
 
+        .section-title {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
         }
 
         .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(62, 39, 35, 0.2);
-            background: var(--bg);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .service-icon {
             width: 60px;
             height: 60px;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 20px;
             color: var(--accent);
-            transition: color 0.3s ease;
         }
 
-        .service-card:hover .service-icon {
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
             color: var(--primary);
-        }
-
-        .service-card h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
         }
 
         .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 15px;
         }
 
-        /* Testimonials Section */
+        @media (max-width: 768px) {
+            .services {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+        }
+
+        /* TESTIMONIALS */
         .testimonials {
-            padding: 6rem 2rem;
-            background: var(--bg);
+            padding: 100px 40px;
+            background-color: var(--primary);
+            color: var(--white);
         }
 
         .testimonials-container {
@@ -417,55 +418,59 @@
             margin: 0 auto;
         }
 
+        .testimonials .section-title {
+            color: var(--white);
+            margin-bottom: 60px;
+        }
+
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
         }
 
         .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
         }
 
         .stars {
             color: #FFD700;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 3px;
         }
 
         .testimonial-text {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-style: italic;
+            font-size: 16px;
+            margin-bottom: 20px;
             line-height: 1.8;
+            font-style: italic;
         }
 
         .testimonial-author {
             font-weight: 600;
-            color: var(--primary);
+            font-size: 15px;
         }
 
-        .author-location {
-            font-size: 0.85rem;
-            color: var(--text-light);
+        @media (max-width: 768px) {
+            .testimonials {
+                padding: 60px 20px;
+            }
         }
 
-        /* Map Section */
+        /* MAP */
         .map-section {
-            padding: 6rem 2rem;
-            background: var(--secondary);
+            padding: 100px 40px;
+            background-color: var(--white);
         }
 
         .map-container {
@@ -473,24 +478,45 @@
             margin: 0 auto;
         }
 
-        .map-wrapper {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            height: 500px;
-            margin-top: 2rem;
+        .map-container h2 {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        .map-wrapper iframe {
+        .map-frame {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-frame iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* Contact Section */
+        @media (max-width: 768px) {
+            .map-section {
+                padding: 60px 20px;
+            }
+
+            .map-container h2 {
+                font-size: 36px;
+            }
+
+            .map-frame {
+                height: 350px;
+            }
+        }
+
+        /* CONTACT */
         .contact {
-            padding: 6rem 2rem;
-            background: var(--bg);
+            padding: 100px 40px;
+            background-color: var(--secondary);
         }
 
         .contact-container {
@@ -498,46 +524,44 @@
             margin: 0 auto;
         }
 
-        .contact-wrapper {
+        .contact-container h2 {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 60px;
         }
 
         .contact-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-form h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: var(--text);
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 14px;
         }
 
         .form-group input,
         .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.95rem;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
             transition: border-color 0.3s ease;
         }
 
@@ -552,114 +576,102 @@
             min-height: 120px;
         }
 
-        .form-submit {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--accent);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .form-submit:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-        }
-
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 30px;
         }
 
         .info-block {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .info-block h4 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            gap: 20px;
+            align-items: flex-start;
         }
 
         .info-icon {
             width: 24px;
             height: 24px;
             color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 3px;
         }
 
-        .info-block p {
-            color: var(--text-light);
-            line-height: 1.8;
+        .info-content h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--primary);
         }
 
-        .info-block a {
+        .info-content p {
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .info-content a {
             color: var(--accent);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .info-block a:hover {
+        .info-content a:hover {
             color: var(--primary);
         }
 
-        /* Footer */
+        @media (max-width: 768px) {
+            .contact {
+                padding: 60px 20px;
+            }
+
+            .contact-container h2 {
+                font-size: 36px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* FOOTER */
         footer {
-            background: var(--primary);
+            background-color: var(--dark);
             color: var(--white);
-            padding: 2rem;
+            padding: 40px;
             text-align: center;
-            font-size: 0.9rem;
         }
 
         footer p {
-            margin: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            font-size: 14px;
         }
 
-        /* Animations */
-        .fade-in {
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .scroll-reveal {
             opacity: 0;
-            animation: fadeInElement 0.6s ease-out forwards;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        @keyframes fadeInElement {
-            to {
-                opacity: 1;
-            }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Responsive */
+        /* MOBILE HERO */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                right: 0;
-                flex-direction: column;
-                background: var(--white);
-                width: 100%;
-                padding: 2rem;
-                gap: 1rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
+            .hero {
+                margin-top: 80px;
+                min-height: 70vh;
             }
 
             .hero h1 {
@@ -667,180 +679,205 @@
             }
 
             .hero h2 {
-                font-size: 1.2rem;
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-image {
-                order: -1;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
+                font-size: 18px;
             }
 
             .hero-buttons {
                 flex-direction: column;
+                align-items: center;
             }
 
             .btn {
                 width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            nav {
+                padding: 0 15px;
+                height: 70px;
             }
 
-            .map-wrapper {
-                height: 350px;
+            .nav-brand {
+                font-size: 20px;
+            }
+
+            .hero {
+                margin-top: 70px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero h2 {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .about-content h2,
+            .contact-container h2,
+            .map-container h2 {
+                font-size: 28px;
+            }
+
+            .service-card {
+                padding: 25px;
+            }
+
+            .testimonial-card {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav id="navbar">
-        <a href="#home" class="logo">Bytown Shoe Repair</a>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#" class="nav-brand">Bytown Shoe Repair</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#map">Location</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="menu-toggle" id="menuToggle">
+            <i data-lucide="menu"></i>
         </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- HERO -->
+    <section class="hero">
         <div class="hero-content">
-            <p class="hero-label">Byward Market Ottawa · Shoe Repair</p>
+            <p class="hero-label">BYWARD MARKET OTTAWA · SHOE REPAIR AND LEATHER WORK</p>
             <h1>Bytown Shoe Repair</h1>
-            <h2>Expert Cobbling and Leather Work in Ottawa's Historic ByWard Market</h2>
+            <h2>Master craftsmanship with honest assessments and fair pricing</h2>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="#services" class="btn btn-secondary">View Services</a>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get in Touch</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Our Services</button>
             </div>
         </div>
-        <div class="scroll-arrow">
-            <svg class="w-8 h-8" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--white);">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+        <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);">
+            <i data-lucide="arrow-down" class="bounce-arrow" style="width: 32px; height: 32px; color: white;"></i>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2 class="section-title">Our Story</h2>
+    <!-- ABOUT -->
+    <section class="about scroll-reveal" id="about">
         <div class="about-container">
-            <div class="about-image">
-                <img src="https://source.unsplash.com/800x600/?cobbler,craftsman" alt="Joseph's Shoe Repair Craftsmanship">
-            </div>
             <div class="about-content">
-                <h3>Honest Craftsmanship in the Heart of the Market</h3>
-                <p>Welcome to Bytown Shoe Repair, where Joseph brings decades of expertise to every pair of shoes that walks through our door. Located in the vibrant ByWard Market neighbourhood, we've become Ottawa's trusted destination for quality shoe repair and leather restoration.</p>
-                <p>At Bytown Shoe Repair, we believe in the value of quality craftsmanship. Rather than discarding worn shoes, we give them new life through expert repairs, resoling, and restoration. Each project is handled with meticulous attention to detail, using traditional cobbling techniques combined with modern materials and tools.</p>
-                <p>Whether your favourite leather boots need new soles, your dress shoes require professional restoration, or you need specialized leather work, Joseph's commitment to excellence ensures your footwear receives the care it deserves. We take pride in being part of Ottawa's community, serving locals and visitors alike who appreciate the value of quality repair work.</p>
+                <h2>About Bytown Shoe Repair</h2>
+                <p>Established over 15 years ago, Bytown Shoe Repair has become a trusted landmark in Ottawa's vibrant ByWard Market. Under the expert care of Joseph, our master cobbler, we've built a reputation for honest assessments and fair pricing that keeps customers returning for their most valued footwear.</p>
+                <p>We specialize in comprehensive shoe repair, leather restoration, and custom modifications. Every pair that enters our shop receives Joseph's personal attention and expertise. From everyday wear to cherished heirloom shoes, we approach each project with the same dedication to quality craftsmanship.</p>
+                <p>Our loyal customer base spans throughout Lowertown and beyond, trusting us with boots, dress shoes, leather goods, and unique pieces that deserve expert care. We believe that quality repairs extend the life of your favorite shoes while honoring the craftsmanship of their original makers.</p>
             </div>
+            <div class="about-image"></div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- SERVICES -->
     <section class="services" id="services">
         <div class="services-container">
             <h2 class="section-title">Our Services</h2>
             <div class="services-grid">
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="wrench"></data-lucide-icon></svg>
-                    <h4>Shoe Repair & Resoling</h4>
-                    <p>Expert sole and heel replacement for dress shoes, casual wear, and boots. We use premium materials to ensure durability and comfort for years to come.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="wrench" class="service-icon"></i>
+                    <h3>Shoe Repair</h3>
+                    <p>Professional repairs for all shoe types. Heel replacement, sole repairs, stitching work, and structural fixes to restore your footwear.</p>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="palette"></data-lucide-icon></svg>
-                    <h4>Leather Restoration</h4>
-                    <p>Bring your leather shoes and accessories back to life. We clean, condition, and restore leather to its original beauty and suppleness.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="hammer" class="service-icon"></i>
+                    <h3>Leather Restoration</h3>
+                    <p>Expert restoration of leather bags, jackets, and accessories. Cleaning, conditioning, color repair, and structural restoration.</p>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="scissors"></data-lucide-icon></svg>
-                    <h4>Zipper Replacement</h4>
-                    <p>Professional zipper repairs and replacements for boots, bags, and jackets. We ensure smooth operation and lasting quality on every fix.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="wrench" class="service-icon"></i>
+                    <h3>Boot Resoling</h3>
+                    <p>Complete resoling services for boots and hiking shoes. Quality materials and lasting construction for durability and comfort.</p>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="shoe"></data-lucide-icon></svg>
-                    <h4>Boot Repair</h4>
-                    <p>Specialized repairs for work boots, winter boots, and hiking footwear. We handle everything from sole replacement to structural reinforcement.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="hammer" class="service-icon"></i>
+                    <h3>Zipper Replacement</h3>
+                    <p>Replace broken zippers on boots, bags, and leather jackets with quality hardware that matches your original piece.</p>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="briefcase"></data-lucide-icon></svg>
-                    <h4>Bag & Belt Repair</h4>
-                    <p>Expert restoration of leather bags, belts, and other accessories. We repair straps, buckles, and structural damage with precision and care.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="wrench" class="service-icon"></i>
+                    <h3>Leather Dyeing</h3>
+                    <p>Professional leather dyeing and color correction. Refresh faded leather or change the color to breathe new life into your items.</p>
                 </div>
-                <div class="service-card">
-                    <svg class="service-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><data-lucide-icon="key"></data-lucide-icon></svg>
-                    <h4>Key Cutting</h4>
-                    <p>Quick and accurate key cutting service for house keys, office keys, and more. Professional equipment ensures precision on every cut.</p>
+                <div class="service-card scroll-reveal">
+                    <i data-lucide="hammer" class="service-icon"></i>
+                    <h3>Custom Modifications</h3>
+                    <p>Bespoke modifications tailored to your needs. From comfort adjustments to custom strap additions and structural changes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- TESTIMONIALS -->
+    <section class="testimonials scroll-reveal" id="testimonials">
         <div class="testimonials-container">
             <h2 class="section-title">What Our Customers Say</h2>
             <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Joseph completely restored my leather dress shoes that I thought were beyond repair. The quality of his work is exceptional, and they look and feel like new. Highly recommended for anyone in Ottawa."</p>
-                    <p class="testimonial-author">Margaret Chen</p>
-                    <p class="author-location">Lowertown, Ottawa</p>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                    </div>
+                    <p class="testimonial-text">"Joseph's honesty about what repairs are worth doing is rare these days. He gave me a fair assessment and did beautiful work on my favorite leather boots. They feel brand new."</p>
+                    <p class="testimonial-author">— Sarah M., Lowertown</p>
                 </div>
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Best shoe repair in the city! My winter boots needed new soles and Joseph did an incredible job. The attention to detail and quick turnaround time made me a customer for life."</p>
-                    <p class="testimonial-author">David Thompson</p>
-                    <p class="author-location">Byward Market, Ottawa</p>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been bringing my shoes to Bytown for over a decade. Joseph treats each pair like his own. His prices are fair and his craftsmanship is exceptional."</p>
+                    <p class="testimonial-author">— Michael T., ByWard Market</p>
                 </div>
-                <div class="testimonial-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"I've been taking my shoes to Bytown Shoe Repair for years. Joseph's craftsmanship is unmatched, and his prices are fair. The ByWard Market wouldn't be the same without him!"</p>
-                    <p class="testimonial-author">Sarah Williams</p>
-                    <p class="author-location">Centrepointe, Ottawa</p>
+                <div class="testimonial-card scroll-reveal">
+                    <div class="stars">
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                        <i data-lucide="star" style="fill: #FFD700; width: 20px; height: 20px;"></i>
+                    </div>
+                    <p class="testimonial-text">"Had my leather jacket restored here. The attention to detail was incredible. Joseph understood exactly what I wanted and delivered perfect results."</p>
+                    <p class="testimonial-author">— Elena K., Ottawa</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section" id="map">
+    <!-- MAP -->
+    <section class="map-section scroll-reveal" id="map">
         <div class="map-container">
-            <h2 class="section-title">Visit Us in the ByWard Market</h2>
-            <div class="map-wrapper">
+            <h2>Visit Us in the Heart of ByWard Market</h2>
+            <div class="map-frame">
                 <iframe src="https://maps.google.com/maps?q=Bytown+Shoe+Repair+Ottawa+Ontario&output=embed"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- CONTACT -->
+    <section class="contact scroll-reveal" id="contact">
         <div class="contact-container">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-wrapper">
+            <h2>Get in Touch</h2>
+            <div class="contact-content">
                 <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form id="contactForm">
+                    <h3 style="font-size: 24px; color: var(--primary); margin-bottom: 20px;">Send us a Message</h3>
+                    <form onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -857,81 +894,99 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="form-submit">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                     </form>
                 </div>
+
                 <div class="contact-info">
+                    <h3 style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">Contact Information</h3>
+
                     <div class="info-block">
-                        <h4>
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><data-lucide-icon="map-pin"></data-lucide-icon></svg>
-                            Address
-                        </h4>
-                        <p>341 Dalhousie St<br>Ottawa, ON K1N 7G3<br>Canada</p>
+                        <i data-lucide="map-pin" class="info-icon"></i>
+                        <div class="info-content">
+                            <h3>Address</h3>
+                            <p>341 Dalhousie St<br>Ottawa, ON K1N 7G3<br>ByWard Market (Lowertown)</p>
+                        </div>
                     </div>
+
                     <div class="info-block">
-                        <h4>
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><data-lucide-icon="phone"></data-lucide-icon></svg>
-                            Phone
-                        </h4>
-                        <p><a href="tel:613-562-2141">613-562-2141</a></p>
+                        <i data-lucide="phone" class="info-icon"></i>
+                        <div class="info-content">
+                            <h3>Phone</h3>
+                            <p><a href="tel:613-562-2141">613-562-2141</a></p>
+                        </div>
                     </div>
+
                     <div class="info-block">
-                        <h4>
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><data-lucide-icon="mail"></data-lucide-icon></svg>
-                            Email
-                        </h4>
-                        <p><a href="mailto:bytownshoerepair@hotmail.com">bytownshoerepair@hotmail.com</a></p>
+                        <i data-lucide="mail" class="info-icon"></i>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p><a href="mailto:bytownshoerepair@hotmail.com">bytownshoerepair@hotmail.com</a></p>
+                        </div>
                     </div>
+
                     <div class="info-block">
-                        <h4>
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><data-lucide-icon="star"></data-lucide-icon></svg>
-                            Google Rating
-                        </h4>
-                        <p>4.9 out of 5 stars<br>138 reviews</p>
+                        <i data-lucide="clock" class="info-icon"></i>
+                        <div class="info-content">
+                            <h3>Owner</h3>
+                            <p>Joseph - Trusted cobbler<br>15+ years of experience</p>
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <i data-lucide="star" class="info-icon"></i>
+                        <div class="info-content">
+                            <h3>Reviews</h3>
+                            <p>4.9 stars from 138 reviews</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                        <p style="margin-bottom: 10px;">Follow us on social media:</p>
+                        <p>
+                            <a href="https://www.instagram.com/bytownshoerepair" style="margin-right: 15px;">Instagram @bytownshoerepair</a><br>
+                            <a href="https://www.facebook.com/BytownShoeRepair/">Facebook</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Bytown Shoe Repair. All rights reserved.</p>
-        <p>Website by CapitalSites Ottawa</p>
+        <p>&copy; 2026 Bytown Shoe Repair. All rights reserved. Website by <a href="#">CapitalSites Ottawa</a></p>
     </footer>
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            document.querySelector('.contact-form form').reset();
+        }
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        const hamburger = document.getElementById('hamburger');
+        const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile menu toggle
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+        menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile menu when link is clicked
-        navLinks.querySelectorAll('a').forEach(link => {
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
             });
         });
 
-        // Intersection Observer for fade-in animations
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -940,24 +995,17 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+                    entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Observe all service cards and testimonial cards
-        document.querySelectorAll('.service-card, .testimonial-card, .info-block').forEach(el => {
-            el.classList.add('fade-in');
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
         });
 
-        // Form submission (demo only)
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            document.getElementById('contactForm').reset();
-        });
+        lucide.createIcons();
     </script>
 </body>
 </html>
